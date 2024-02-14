@@ -1,0 +1,58 @@
+.userpageright{
+    width: 35%;
+    box-sizing: border-box;
+}
+.userpageleft{
+    box-sizing: border-box;
+    width: 65%;
+}
+.usermaindiv{
+    margin-top: 60px;
+}
+.errormessage{
+    background-image: url("../\(imgs\)/error.png") !important;
+    background-size: 100% 100% !important;
+height: 500px;
+width: 700px;
+}
+.userPageProfileImg{
+height: 150px;
+width: 150px;
+}
+.askbuttonuser{
+    height: 30px;
+    align-self: flex-end;
+}
+.moredetialspop{
+    position: absolute;
+    top:50%;
+    transform: translateY(-15%);
+    height: 500px;
+    width: 500px;
+    z-index: 1000000000 !important;
+    background-color: white;
+    box-sizing: border-box;
+}
+.blackscreen3{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.stepBtnMoreDetials span:last-child{
+    font-size: 11px;
+}
+.moredetailstxtupperdiv p{
+ align-self: flex-end;
+ margin-bottom: 2px;
+ letter-spacing: 0.2;
+}
+.zoomin{
+    scale: 1;
+    transition: all 0.2s ease-in;
+}
+.zoomout{
+    scale: 0;
+    transition: all 0.2s ease-in;
+}

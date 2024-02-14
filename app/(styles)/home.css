@@ -1,0 +1,45 @@
+.mainflex{
+    display: flex;
+    margin-top: 40px;
+}
+.mainflexleft{
+    width:20%;
+}
+.mainflexright{
+    width: 80% ;
+}
+.mainflexrightadd{
+    width: 500px;
+    position: sticky;
+}
+.mainflexrightcenter{
+    height: 100vh;
+    overflow-y: scroll;
+}
+.mainflexrightcenter::-webkit-scrollbar{
+    display: none;
+}
+
+.userlogohome{
+    height: 40px;
+    width: 45px;
+    border-radius: 50%;
+    position: relative;
+}
+.profileimage{
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+.homecontent{
+    letter-spacing: 0.2px;
+    word-spacing: 1px;
+}
+.downvotebtn{
+    border-radius: 0px 40px 40px 0px !important;
+}
+.upvotebtn{
+    border-radius: 40px 0px 0px 40px !important;
+}
+
+

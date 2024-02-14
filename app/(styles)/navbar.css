@@ -1,0 +1,99 @@
+.wholewebsiteMaindiv{
+height: 100vh;
+overflow-y: scroll;
+}
+.wholewebsiteMaindiv::-webkit-scrollbar{
+    display: none;
+}
+.navbar{
+    display: fixed;
+    top: 0;
+}
+.searchinput{
+    position: relative;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    display: flex;
+    padding: 0px 5px;
+    height: 45px;
+    width: 50%;
+    align-items: center;
+    gap: 5px;
+}
+.searchinput input{
+    border-radius: 8px;
+    height: 100%;
+    outline: none;
+    width: 100%;
+    border: none;
+    font-size: 18px;
+    font-weight: thin;
+}
+.serachinputpop::-webkit-scrollbar{
+    display: none;
+}
+.serachinputpop{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 45px;
+    left: 0;
+    gap: 6px;
+    background-color: white;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 3px; 
+}
+.serachinputpop>p{
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+.serachinputpop>p:hover{
+    background-color: rgba(211, 211, 211, 0.33);
+}
+
+.addpostbutton{
+    background-color: #f52936 !important;
+    border-radius: 50px !important;
+    font-size: 13px !important;
+    text-transform: lowercase !important;
+    height: 30px !important;
+}
+
+.popupmainbar h3{
+border-bottom: 0.2px solid;
+width: 250px;
+}
+
+.userlogo{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.useremailmainbar{
+    border-bottom: 1px solid;
+}
+
+.blackscreen2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh !important;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.208);
+    z-index: 10000000;
+}
+
+.searchchannelimg{
+    height: 25px;
+    width: 25px;
+}
+
