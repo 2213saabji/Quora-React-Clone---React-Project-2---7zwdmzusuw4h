@@ -42,4 +42,43 @@
     border-radius: 40px 0px 0px 40px !important;
 }
 
+.createPostDiv{
+    width: 700px;
+    max-width: 700px;
+    height: 500px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.createPostDiv>div>div:last-child>p{
+    transform: translateX(-20px);
+}
 
+.brdrbottom{
+    border-bottom: 3px solid blue;
+}
+
+.createpostdiv{
+    height: 310px;
+}
+
+.createpostdowndiv{
+    height: 60px;
+}
+.createPostTextareaOuterDiv{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.createPostTextareaOuterDiv textarea{
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+.attachedimage{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 3px;
+    margin-left: 10px;
+}

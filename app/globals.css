@@ -895,9 +895,17 @@
     width: 100% !important;
 }
 
-.iscale08{
-    scale: 0.8;
+.h100per {
+    height: 100% !important;
 }
+
+.iscale08{
+    scale: 0.8 !important;
+}
+.fgrow1{
+    flex-grow: 1 !important;
+}
+
 
 
 
