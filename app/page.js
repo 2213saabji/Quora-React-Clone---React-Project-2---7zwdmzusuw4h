@@ -6,7 +6,6 @@ import { allContext } from "./layout";
 import { baseurl, copypencilicon, downvoteicon, messageicon, pencilicon, roundmessageicon, upvoteicon } from "./(navbar)/constant";
 import { useEffect, useState, useMemo, use } from "react";
 import { useRouter } from "next/navigation";
-import SwipeableTextMobileStepper from "./(carousal)/carousalone";
 import Home from "./(home)/Home"
 
 export default function page() {
@@ -75,9 +74,8 @@ export default function page() {
 
         </div>
         <div className={`mainflexrightadd flexa flexc pt30`}>
-          <SwipeableTextMobileStepper />
-          <SwipeableTextMobileStepper />
-
+        <iframe  style={{width:"100%",maxWidth:"300px",height:"300px",overflow:"hidden"}} src='https://s0.2mdn.net/sadbundle/12492554015069590311/index.html?ev=01_250'/>
+          <iframe  style={{width:"100%",maxWidth:"300px",height:"300px",overflow:"hidden"}} src='https://s0.2mdn.net/sadbundle/12492554015069590311/index.html?ev=01_250'/>
         </div>
       </div>
     </>
