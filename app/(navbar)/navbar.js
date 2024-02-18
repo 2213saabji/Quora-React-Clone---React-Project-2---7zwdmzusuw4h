@@ -23,7 +23,7 @@ import Switch, { SwitchProps } from '@mui/material/Switch';
 
 function Navbar() {
     const router = useRouter()
-    const { theme, settheme, logintoken, setlogintoken, themecheck, blackscreen2, setblackscreen2 } = allContext();
+    const { theme, settheme,activePostOrQueDiv,setactivePostOrQueDiv, logintoken, setlogintoken, themecheck, blackscreen2, setblackscreen2 } = allContext();
     const [serachdata, setsearchdata] = useState();
     const [searchinput, setsearchinput] = useState("");
     const [anchorElNav, setAnchorElNav] = useState();
@@ -192,6 +192,9 @@ function Navbar() {
         fetchsearchdata;
     }, [])
 
+    function userprofile(){
+        router.push(`/profile/${JSON.parse(localStorage.getItem("userdetails"))._id}`)
+    }
     function gotologin() {
         router.push(`/login`);
     }
@@ -236,8 +239,8 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {navicon.map((page) => (
-                                <MenuItem key={page} onClick={() => { handleCloseNavMenu, routetonext(page.link) }}>
+                            {navicon.map((page,index) => (
+                                <MenuItem key={index} onClick={() => { handleCloseNavMenu, routetonext(page.link) }}>
                                     <Typography textAlign="center">{page.svg}</Typography>
                                 </MenuItem>
                             ))}
@@ -246,9 +249,9 @@ function Navbar() {
                     <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>{logoicon}</Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {navicon.map((page) => (
+                        {navicon.map((page,index) => (
                             <Button disableRipple
-                                key={page}
+                                key={index}
                                 onClick={() => { handleCloseNavMenu, routetonext(page.link) }}
                                 sx={{ my: 2, color: 'white', display: 'block', margin: "0px", padding: "0px", backgroundColor: router.pathname === `/${page.link}` ? 'red' : 'transparent', }}
                             >
@@ -262,7 +265,7 @@ function Navbar() {
                             {searchinputstate && <div className={`serachinputpop ${themecheck("bkwhite", "bklightblack")} ${themecheck("boxshadowlgray","boxshadowblack")}`}>
                                 <h2 className={`pb10 mb5 brdrb2 ${themecheck("brdrlightgray", "brdrllgray")}  ${themecheck("txt5", "txt1")}`}>Contents</h2>
                                 {serachdata &&
-                                    serachdata.map((item) => (<p style={{ color: "black" }} className={`${themecheck("txt5", "txt1")}`}>{item.title}</p>))
+                                    serachdata.map((item,index) => (<p key={index} style={{ color: "black" }} className={`${themecheck("txt5", "txt1")}`}>{item.title}</p>))
                                 }
                             </div>}
                         </div>
@@ -305,9 +308,9 @@ function Navbar() {
                         >
                             <h2 className={`userlogo ml10 w500 flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
                             <h3 className={`useremailmainbar w500 mt10 pl10 pr20 mb20 pb5 ${themecheck("brdrwdth1", "brdrwdth1")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt5", "txt1")}`}>{JSON.parse(localStorage.getItem("userdetails")).email}</h3>
-                            <h5 className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`}>Profile Setting</h5>
+                            <h5 className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={()=>{userprofile(),handleClosee()}}>Profile Setting</h5>
                             <div className={`flexa flexjsb pl10 pb10 brdrb1 mb10 ${themecheck("brdrlightgray", "brdrllgray")}`}><h5 className={`${themecheck("txt5", "txt1")}`}>Dark mode</h5><FormControlLabel style={{ transform: "translate(13px)" }} control={<MaterialUISwitch sx={{ m: 1 }} checked={theme == "dark"} />} onChange={themechanger} checked={theme === "dark"} /></div>
-                            <h5 onClick={() => { logoutuser() }} className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`}>Logout</h5>
+                            <h5 onClick={() => { logoutuser() }} className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onclick={()=>{handleClosee()}}>Logout</h5>
                         </Menu>
                         <Button
                             id="demo-customized-button"
@@ -318,10 +321,11 @@ function Navbar() {
                             disableElevation
                             onClick={handleClick}
                             endIcon={<KeyboardArrowDownIcon />}
-                            sx={{ ml: "10px" }}
+                            sx={{ ml: "10px",textTransform:"capitalize" }}
                             className='addpostbutton'
+                            style={{ textTransform: 'capitalize' }} 
                         >
-                            Add question
+                            Create Post
                         </Button>
                         <StyledMenu
                             id="demo-customized-menu"
@@ -332,7 +336,7 @@ function Navbar() {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={() => { handleClose(); setblackscreen2(true) }} disableRipple>
+                            <MenuItem onClick={() => { handleClose(); setblackscreen2(true),setactivePostOrQueDiv(false) }} disableRipple>
                                 <EditIcon />
                                 Create post
                             </MenuItem>

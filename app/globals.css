@@ -7,13 +7,16 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
+.brdrbx{
+    box-sizing: border-box !important;
+}
 .posfix {
-    position: fixed;
-    top: 0;
+    position: fixed !important;
+    top: 0 !important;
 }
 
 .txtrpnone{
-    text-wrap: none;
+    text-wrap: nowrap !important;
 }
 
 .boxshadowlgray {
@@ -641,6 +644,14 @@
     color: black !important;
 }
 
+.txt9{
+    color: #2e69ff !important;
+}
+
+.txt10{
+    color:#c9c9ca !important;
+}
+
 .txtblue{
     color:blue !important;
 }
@@ -695,6 +706,10 @@
     background-color: #181818 !important;
 }
 
+.bkllwhite{
+    background-color: #f8f4f4;
+}
+
 .bklightwhite {
     background-color: #dee0e1 !important;
 }
@@ -709,6 +724,15 @@
 
 .bkblue {
     background-color: #1471ff !important;
+}
+
+.bkblueopacity7{
+    background-color: rgba(0, 0, 255, 0.599) !important;
+
+}
+
+.bkblueopacity3 {
+    background-color: #EBF0FF !important;
 }
 
 .bkpureblue{
@@ -732,7 +756,11 @@
 }
 
 .csrpntr {
-    cursor: pointer;
+    cursor: pointer !important;
+}
+
+.nodrop{
+    cursor: no-drop !important;
 }
 
 .darkbghvr:hover {

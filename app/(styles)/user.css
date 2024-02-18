@@ -1,58 +1,106 @@
-.userpageright{
+.userpageright {
     width: 35%;
     box-sizing: border-box;
+    align-self: flex-start;
 }
-.userpageleft{
+
+.userpageleft {
     box-sizing: border-box;
     width: 65%;
 }
-.usermaindiv{
-    margin-top: 60px;
+
+.userpostsdiv{
+    margin-top: 50px;
 }
-.errormessage{
+
+.modifyboxdiv input, .modifyboxdiv textarea{
+    border: none;
+    outline: none;
+}
+
+.modifyboxdiv{
+}
+
+.usermaindiv::-webkit-scrollbar{
+    display: none;
+}
+.usermaindiv {
+    border: none;
+    overflow-y: scroll;
+    height: 89vh;
+    outline: none;
+    margin-top: 38px;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.errormessage {
     background-image: url("../\(imgs\)/error.png") !important;
     background-size: 100% 100% !important;
-height: 500px;
-width: 700px;
+    height: 500px;
+    width: 700px;
 }
-.userPageProfileImg{
-height: 150px;
-width: 150px;
+
+.emptypostsmessage{
+    background-image: url("https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.empty_states.dormant_lightmode.png-26-c4532c98034818a0.png") !important;
+    background-size: 100% 100% !important;
+    transform: translateX(-20px);
+    height: 200px;
+    width: 200px;
 }
-.askbuttonuser{
+
+.userPageProfileImg {
+    height: 150px;
+    width: 150px;
+}
+
+.userPageProfileImgsubstitute {
+    font-size: 70px !important;
+    min-height: 150px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+    max-height: 150px !important;
+}
+
+.askbuttonuser {
     height: 30px;
     align-self: flex-end;
 }
-.moredetialspop{
+
+.moredetialspop {
     position: absolute;
-    top:50%;
-    transform: translateY(-15%);
+    top: 100px;
     height: 500px;
     width: 500px;
     z-index: 1000000000 !important;
     background-color: white;
     box-sizing: border-box;
 }
-.blackscreen3{
+
+.blackscreen3 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
 }
-.stepBtnMoreDetials span:last-child{
+
+.stepBtnMoreDetials span:last-child {
     font-size: 11px;
 }
-.moredetailstxtupperdiv p{
- align-self: flex-end;
- margin-bottom: 2px;
- letter-spacing: 0.2;
+
+.moredetailstxtupperdiv p {
+    align-self: flex-end;
+    margin-bottom: 2px;
+    letter-spacing: 0.2;
 }
-.zoomin{
+
+.zoomin {
     scale: 1;
     transition: all 0.2s ease-in;
 }
-.zoomout{
+
+.zoomout {
     scale: 0;
     transition: all 0.2s ease-in;
 }
