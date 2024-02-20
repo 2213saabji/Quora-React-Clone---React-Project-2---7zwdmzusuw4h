@@ -17,7 +17,7 @@ import Home from "@/app/(home)/Home";
 const steps = ['Work Experience', 'Education', 'Skills', "Address"];
 
 export default function YourComponent(props) {
-  const {title,settitle, content,setcontent, imgpost,setimgpost, blackscreen2, setblackscreen2, toggle, settoggle, routetouserpage, uppercase,imagepicker,inputpicuploader, imagestorediv, handleFileSelection, setuppercase } = allContext();
+  const { title, settitle, content, setcontent, imgpost, setimgpost, blackscreen2, setactivePostOrQueDiv, setblackscreen2, toggle, settoggle, routetouserpage, uppercase, imagepicker, inputpicuploader, imagestorediv, handleFileSelection, setuppercase, successfullMessageAddfun } = allContext();
   const { themecheck } = allContext();
   const [data, setdata] = useState();
   const [userfound, setuserfound] = useState(true);
@@ -172,34 +172,35 @@ export default function YourComponent(props) {
                   <p className={`txtrpnone fnt12 ${themecheck("txt4", "txt1")}`}>({data.email})</p>
                 </div>
                 <div className={`followbuttondiv flex g20`}>
-                  <button onClick={() => { following ? postunfollow(data._id) : postfollow(data._id) }} className={`w600 pl20 pr20 pt5 pb5 brdr2 brdr-r50 flexa brdrpureblue fnt15   ${following ? "txtblue" : "txt7"} ${following ? "bktransparent" : "bkpureblue"}`}>
+                  <button onClick={() => { following ? postunfollow(data._id) : postfollow(data._id) }} className={`w600 csrpntr pl20 pr20 pt5 pb5 brdr2 brdr-r50 flexa brdrpureblue fnt15   ${following ? "txtblue" : "txt7"} ${following ? "bktransparent" : "bkpureblue"}`}>
                     {following ? followingicon : followicon}&nbsp; {following ? `Following` : `Follow`}
                   </button>
-                  <button className={`askbuttonuser w600 pl10 pr10 brdr2 brdr-r50 flexa fnt14 bktransparent flexa g5 ${themecheck("brdrlgray", "brdrllgray")} ${themecheck("txt5", "txt1")} `}>
-                    <div className={`iscale08`}>{messageicon}</div><p> Ask</p>
+                  <button className={`askbuttonuser csrpntr w600 pl10 pr10 brdr2 brdr-r50 flexa fnt14 bktransparent flexa g5 ${themecheck("brdrlgray", "brdrllgray")} ${themecheck("txt5", "txt1")} `} onClick={() => { setblackscreen2(true), setactivePostOrQueDiv(true) }}>
+                    <div className={`iscale08`} >{messageicon}</div><p> Ask</p>
                   </button>
                 </div>
               </div>
             </div>
             <div className={`userpostsdiv flexa flexc pb30`}>
               {userposts && userposts.map((item, index) => (
-                <Home title={title} settitle={settitle} 
-                content={content} setcontent={setcontent} 
-                imgpost={imgpost} setimgpost={setimgpost} 
-                setuppercase={setuppercase} 
-                handleFileSelection={handleFileSelection} 
-                imagestorediv={imagestorediv} 
-                inputpicuploader={inputpicuploader} 
-                imagepicker={imagepicker} 
-                uppercase={uppercase} 
-                delpostaccess={true} 
-                index={index} 
-                toggle={toggle} settoggle={settoggle} 
-                themecheck={themecheck} 
-                item={item} 
-                routetouserpage={routetouserpage} />
+                <Home title={title} settitle={settitle}
+                  content={content} setcontent={setcontent}
+                  imgpost={imgpost} setimgpost={setimgpost}
+                  setuppercase={setuppercase}
+                  handleFileSelection={handleFileSelection}
+                  imagestorediv={imagestorediv}
+                  inputpicuploader={inputpicuploader}
+                  imagepicker={imagepicker}
+                  uppercase={uppercase}
+                  delpostaccess={true}
+                  index={index}
+                  toggle={toggle} settoggle={settoggle}
+                  themecheck={themecheck}
+                  item={item}
+                  routetouserpage={routetouserpage}
+                  successfullMessageAddfun={successfullMessageAddfun} />
               ))}
-              {userposts && userposts.length<=0 &&<div className={`flexa flexc`}><div className={`emptypostsmessage`}></div><p className={`${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+              {userposts && userposts.length <= 0 && <div className={`flexa flexc`}><div className={`emptypostsmessage`}></div><p className={`${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
             </div>
           </div>
           <div className={`userpageright`}>
@@ -229,7 +230,7 @@ export default function YourComponent(props) {
                 <Typography sx={{ mt: 10, mb: 1, py: 1 }}>
                   {activeStep == 0 && <div className={`ml30`}>
                     <h1 className={`${themecheck("txt5", "txt1")}`}>Work Experience</h1>
-                    {data.workExperience &&
+                    {data.workExperience?.[0] &&
                       <div className={`ml30 mt30 moredetailstxtupperdiv flex flexc g5`}>
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Designation:</h4><h4 className={` w400`}>{data.workExperience[0].designation}</h4></div>
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Company Name:</h4><h4 className={` w400`}>{data.workExperience[0].companyName}</h4></div>
@@ -237,22 +238,27 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Description:</h4><h4 className={` w400`}>{data.workExperience[0].description}</h4></div>
                       </div>
                     }
+              {!data.workExperience?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+
                   </div>}
                   {activeStep == 1 && <div className={`ml30`}>
                     <h1 className={`${themecheck("txt5", "txt1")}`}>Education</h1>
-                    {data.education[0] &&
+                    {data.education?.[0] &&
                       <div className={`ml30 mt30 moredetailstxtupperdiv flex flexc g5`}>
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>School Name:</h4><h4 className={`w400`}>{data.education[0].schoolName}</h4></div>
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Degree:</h4><h4 className={`w400`}>{data.education[0].degree}</h4></div>
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Description:</h4><h4 className={`w400`}>{data.education[0].description}</h4></div>
                       </div>
                     }
+              {!data.education?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+
                   </div>}
                   {activeStep == 2 && <div className={`ml30`}>
                     <h1 className={`${themecheck("txt5", "txt1")}`}>Skills</h1>
                     {data.skills &&
                       <div className={`ml30 mt30 moredetailstxtupperdiv flex flexc g5`}>
                         {data.skills.map((item, index) => (<h3 key={index} className={`${themecheck("txt5", "txt1")}`}>{item}</h3>))}
+                        {!data.skills?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage mr30`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
 
                       </div>
                     }
@@ -267,6 +273,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Zip Code:</h4><h4 className={`w400`}>{data.address[0].zipCode}</h4></div>
                       </div>
                     }
+              {!data.address?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
                   </div>}
 
                 </Typography>

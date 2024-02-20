@@ -29,6 +29,8 @@
 .postimg{
     height: 40px;
     width: 40px;
+    min-width: 40px;
+    min-height: 40px;
     border-radius: 50%;
     position: relative;
 }
@@ -110,3 +112,22 @@ height: 60px;
     box-sizing: border-box;
 }
 
+.commentdiv{
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.commentinput{
+    height: 35px;
+    width: 80%;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+
+}
+.commentbutton{
+    padding: 7.5px 0px;
+}
+.marginleftwithcondition{
+    margin-left: 50px !important;
+}

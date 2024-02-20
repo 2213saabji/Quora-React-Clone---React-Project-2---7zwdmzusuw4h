@@ -198,6 +198,9 @@ function Navbar() {
     function gotologin() {
         router.push(`/login`);
     }
+    function pushtoprofile(val){
+        router.push(`/profile/${val}`)
+    }
     useEffect(() => {
         if (typeof (localStorage.getItem("token")) != "string") {
             gotologin();
@@ -265,7 +268,7 @@ function Navbar() {
                             {searchinputstate && <div className={`serachinputpop ${themecheck("bkwhite", "bklightblack")} ${themecheck("boxshadowlgray","boxshadowblack")}`}>
                                 <h2 className={`pb10 mb5 brdrb2 ${themecheck("brdrlightgray", "brdrllgray")}  ${themecheck("txt5", "txt1")}`}>Contents</h2>
                                 {serachdata &&
-                                    serachdata.map((item,index) => (<p key={index} style={{ color: "black" }} className={`${themecheck("txt5", "txt1")}`}>{item.title}</p>))
+                                    serachdata.map((item,index) => (<p key={index} style={{ color: "black" }} className={` ${themecheck("txt5", "txt1")}`} onClick={()=>{pushtoprofile(item.author._id)}}>{item.title}</p>))
                                 }
                             </div>}
                         </div>

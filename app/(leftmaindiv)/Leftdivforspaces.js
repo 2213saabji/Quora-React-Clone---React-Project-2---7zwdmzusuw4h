@@ -6,13 +6,13 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/navigation';
 
-export default function Leftdivforspaces({ baseurl, theme, settheme, loader, setloader, blackscreen2, setblackscreen2, themecheck }) {
+export default function Leftdivforspaces({toggle, baseurl, theme, settheme, loader, setloader,blackscreen3, setblackscreen3, blackscreen2, setblackscreen2, themecheck }) {
   let disablerepeatuser = "";
   const router=useRouter();
   const [leftdivdata, setleftdivdata] = useState();
   const fetchsearchdata = useMemo(async () => {
     try {
-      const response = await (await fetch(`${baseurl}/quora/post`,
+      const response = await (await fetch(`${baseurl}/quora/channel`,
         {
           method: "GET",
           headers: {
@@ -24,7 +24,7 @@ export default function Leftdivforspaces({ baseurl, theme, settheme, loader, set
     } catch (error) {
       alert(error);
     }
-  }, [])
+  }, [toggle])
 
   function pushtochannel(val){
     router.push(`/channel/${val}`)
@@ -35,13 +35,15 @@ export default function Leftdivforspaces({ baseurl, theme, settheme, loader, set
 
   return (
     <div className={`leftdivforspaces flex flexc g10`}>
-      <div className={`flex p10 mb10  ${themecheck("bklightgray", "bkllgray")} csrpntr`}>{plusicon}<p className={`createspacestxt txtrpnone ${themecheck("txt5", "txt1")}`}>Create Space</p></div>
+      <div className={`flex p10 mb10  ${themecheck("bklightgray", "bkllgray")} csrpntr`}>{plusicon}<p className={`createspacestxt txtrpnone ${themecheck("txt5", "txt1")}`} onClick={()=>{setblackscreen3(true)}}>Create Space</p></div>
+      <div>
       {leftdivdata &&
-        leftdivdata.map((item, index) => (item.channel && (disablerepeatuser !== item.channel.name) && (disablerepeatuser = item.channel.name, <div key={index} className={`channeldivs flexa p5 brdr-r3 csrpntr ${themecheck("darkbghvr", "bghvr")}`} onClick={()=>{pushtochannel(item.channel._id)}}>
-          <img className={`searchchannelimg brdr-r5 mr10`} src={item.channel.image} alt='image' />
-          <p className={`fnt12 ${themecheck("txt5", "txt1")}`}>{item.channel.name}</p>
+        leftdivdata.map((item, index) => ((disablerepeatuser !== item.name) && (disablerepeatuser = item.name, <div key={index} className={`channeldivs flexa p5 brdr-r3 csrpntr ${themecheck("darkbghvr", "bghvr")}`} onClick={()=>{pushtochannel(item._id)}}>
+          <img className={`searchchannelimg brdr-r5 mr10`} src={item.image} alt='image' />
+          <p className={`fnt12 ${themecheck("txt5", "txt1")}`}>{item.name}</p>
         </div>)))
       }
+      </div>
 
     </div>
 

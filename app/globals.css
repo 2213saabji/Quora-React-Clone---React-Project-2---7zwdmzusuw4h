@@ -722,12 +722,16 @@
     background-color: #2e69ff84 !important;
 }
 
+.bklightblue2 {
+    background-color: #2E69FF !important;
+}
+
 .bkblue {
     background-color: #1471ff !important;
 }
 
 .bkblueopacity7{
-    background-color: rgba(0, 0, 255, 0.599) !important;
+    background-color: #0000ff99 !important;
 
 }
 
@@ -750,7 +754,10 @@
 .bklightgray {
     background-color: lightgray !important;
 }
+.bklgray{
+    background-color: rgba(211, 211, 211, 0.4);
 
+}
 .bkllgray {
     background-color: rgba(211, 211, 211, 0.119);
 }

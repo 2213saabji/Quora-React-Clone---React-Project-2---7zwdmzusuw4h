@@ -7,13 +7,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle';
+import CommentMessage from '../(commentmessage)/CommentMessage';
 
-export default function Channelposts({ title, settitle, content, setcontent, imgpost, setimgpost, setuppercase, handleFileSelection, imagepicker, imagestorediv, inputpicuploader, uppercase, delpostaccess, index, toggle, settoggle, themecheck, item,  routetouserpage }) {
+export default function Channelposts({ title, settitle, content, setcontent, imgpost, setimgpost, setuppercase, handleFileSelection, imagepicker, imagestorediv, inputpicuploader, uppercase, delpostaccess, index, toggle, settoggle, themecheck, item, routetouserpage }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [modify, setmodify] = useState(false);
-
+    const [commentdiv, setcommentdiv] = useState(false);
+    const [comment, setcomment] = useState("");
     const [openn, setOpenn] = React.useState(false);
 
     const handleClickOpenn = () => {
@@ -34,7 +36,6 @@ export default function Channelposts({ title, settitle, content, setcontent, img
 
     const deletepost = async (val) => {
         try {
-
             const response = await fetch(`${baseurl}/quora/post/${val}`,
                 {
                     method: "DELETE",
@@ -42,10 +43,8 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                         projectID: "7zwdmzusuw4h",
                         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`
                     },
-
                 }
             )
-
             settoggle(!toggle)
         } catch (error) {
             alert(error);
@@ -81,46 +80,74 @@ export default function Channelposts({ title, settitle, content, setcontent, img
         }
     }
 
+    const commentsend = async () => {
+        try {
+
+            const response = await (await fetch(`${baseurl}/quora/comment/${item._id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        projectID: "7zwdmzusuw4h",
+                        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: comment
+                    })
+                }
+            )).json();
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    function refreshcommentdiv() {
+        setcommentdiv(false)
+        setTimeout(() => {
+            setcommentdiv(true);
+        }, 0);
+    }
+
     const likefun = async (val) => {
         try {
-          const response = await (await fetch(`${baseurl}/quora/like/${val}`,
-            {
-              method: item.isLiked?"DELETE":"POST",
-              headers: {
-                projectID: "7zwdmzusuw4h",
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`
-              }
-            }
-          )).json();
-          settoggle(!toggle)
+            const response = await (await fetch(`${baseurl}/quora/like/${val}`,
+                {
+                    method: item.isLiked ? "DELETE" : "POST",
+                    headers: {
+                        projectID: "7zwdmzusuw4h",
+                        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+                    }
+                }
+            )).json();
+            settoggle(!toggle)
         } catch (error) {
-          alert(error);
+            alert(error);
         }
-      }
-      
-      const dislikefun = async (val) => {
+    }
+
+    const dislikefun = async (val) => {
         try {
-          const response = await (await fetch(`${baseurl}/quora/dislike/${val}`,
-            {
-              method: item.isDisliked?"DELETE":"POST",
-              headers: {
-                projectID: "7zwdmzusuw4h",
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`
-              }
-            }
-          )).json();
-          settoggle(!toggle)
+            const response = await (await fetch(`${baseurl}/quora/dislike/${val}`,
+                {
+                    method: item.isDisliked ? "DELETE" : "POST",
+                    headers: {
+                        projectID: "7zwdmzusuw4h",
+                        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+                    }
+                }
+            )).json();
+            settoggle(!toggle)
         } catch (error) {
-          alert(error);
+            alert(error);
         }
-      }
-    
-      function clicklike(like, id) {
-          likefun(id);
-      }
-      function clickdislike(dislike, id) {
-          dislikefun(id);
-      }
+    }
+
+    function clicklike(like, id) {
+        likefun(id);
+    }
+    function clickdislike(dislike, id) {
+        dislikefun(id);
+    }
 
     return (
         <div key={index} className={` brdr-r3 w100per mt10 ${themecheck("bkwhite", "bklightblack")}`}>
@@ -142,10 +169,10 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                 <div className={`flexa flexjsb w100per`}>
                     <div className={`flex w100per pl20 pr20 pb5 mt5`}>
                         <div className={`brdr-r50 csrpntr flex brdr1 ${themecheck("brdrlightgray", "brdrllgray")} `}>
-                            <p className={`flexa bghvr brdrr1 upvotebtn pt5 pl10 pr10 pb5 fnt13 ${item.isLiked ? "upvotebtncolor" : ""} ${themecheck("brdrlightgray", "brdrllgray")}`} onClick={() => { clicklike(item.isLiked, item._id) }}>{upvoteicon}&nbsp;Upvote . &nbsp;{item.likeCount}</p>
-                            <p className={`pl10 pr10 fnt13 bghvr downvotebtn flexja ${item.isDisliked ? "downvotebtncolor" : ""}`} onClick={() => { clickdislike(item.isDisliked, item._id) }}>{downvoteicon}&nbsp;Downvote . &nbsp;{item.dislikeCount}</p>
+                            <p className={`flexa  brdrr1 upvotebtn pt5 pl10 pr10 pb5 fnt13 ${item.isLiked ? "upvotebtncolor" : ""} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { clicklike(item.isLiked, item._id) }}>{upvoteicon}&nbsp;Upvote . &nbsp;{item.likeCount}</p>
+                            <p className={`pl10 pr10 fnt13  downvotebtn flexja ${item.isDisliked ? "downvotebtncolor" : ""} ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { clickdislike(item.isDisliked, item._id) }}>{downvoteicon}&nbsp;Downvote . &nbsp;{item.dislikeCount}</p>
                         </div>
-                        <div className={`bghvr csrpntr brdr-r12 flexja ml20`}>{roundmessageicon}&nbsp;{item.commentCount}</div>
+                        <div className={` csrpntr brdr-r12 flexja ml20 ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { setcommentdiv(!commentdiv) }}>{roundmessageicon}&nbsp;{item.commentCount}</div>
                     </div>
                     {delpostaccess && JSON.parse(localStorage.getItem("userdetails"))._id == item.author._id && <>
                         <Button
@@ -169,34 +196,46 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                             }}
                         >
                             <MenuItem >
-                            <React.Fragment>
-                            
-                            <div onClick={()=>{handleClosee(),handleClickOpenn()}} className={`flexja`}>Delete Post</div>
-                            <Dialog
-                                open={openn}
-                                onClose={handleClosee}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle id="alert-dialog-title">
-                                    {"Are you sure to delete this post"}
-                                </DialogTitle>
-                                <DialogActions>
-                                    <Button onClick={()=>{handleClosee(),handleClose()}}>Disagree</Button>
-                                    <Button onClick={(e)=>{handleClosee();handleClose(), deletepost(item._id)}} autoFocus>
-                                        Agree
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </React.Fragment>
+                                <React.Fragment>
+
+                                    <div onClick={() => { handleClosee(), handleClickOpenn() }} className={`flexja`}>Delete Post</div>
+                                    <Dialog
+                                        open={openn}
+                                        onClose={handleClosee}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogTitle id="alert-dialog-title">
+                                            {"Are you sure to delete this post"}
+                                        </DialogTitle>
+                                        <DialogActions>
+                                            <Button onClick={() => { handleClosee(), handleClose() }}>Disagree</Button>
+                                            <Button onClick={(e) => { handleClosee(); handleClose(), deletepost(item._id) }} autoFocus>
+                                                Agree
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
+                                </React.Fragment>
                             </MenuItem>
                             <MenuItem onClick={() => { handleClose(), setmodify(true) }}>Modify Post</MenuItem>
 
 
                         </Menu>
-                        
+
                     </>}
                 </div>
+                {commentdiv && <div>
+                    <div className={`commentdiv bklgray w100per flexa pl10 flexjsb`}>
+                        <div className={`flexa w100per`}>
+                            <h2 className={`postimg w500 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
+                            <input className={`commentinput pl20 ml5 ${themecheck("bkwhite", "bklightblack")} ${themecheck("txt8", "txt7")}`} value={comment} onChange={(e) => { setcomment(e.target.value) }} type='text' placeholder='Add a comment....' />
+                        </div>
+                        <button className={`commentbutton fnt13 brdr-r50 mr5 txtrpnone pl20 pr20 txt7 ${themecheck(comment ? "bklightblue2" : "bklightgray", comment ? "bklightblue2" : "")} ${themecheck(comment ? "txt7" : "txt8", comment ? "txt7" : "txt8")}`} onClick={() => { commentsend(); setcommentdiv(false); setcomment(""); settoggle(!toggle); refreshcommentdiv() }} disabled={!comment}>Add comment</button>
+                    </div>
+                    <div className={`commentmessage w100per pb10`} onClick={(e) => { e.stopPropagation() }}>
+                        <CommentMessage id={item._id} refreshcommentdiv={refreshcommentdiv} toggle={commentdiv} settoggle={setcommentdiv} routetouserpage={routetouserpage} themecheck={themecheck} />
+                    </div>
+                </div>}
             </>}
             {modify && <>
                 <div className={`p10 modifyboxdiv`}>
@@ -218,7 +257,7 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                             </div>
                         </div>
                         <div>
-                            <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 csrpntr fnt15 txt7 bghvr mr20  ${themecheck("txt8", " txt7")}`} onClick={(e) => {e.stopPropagation(); setmodify(false) }} >cancel</button>
+                            <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 csrpntr fnt15 txt7 bghvr mr20  ${themecheck("txt8", " txt7")}`} onClick={(e) => { e.stopPropagation(); setmodify(false) }} >cancel</button>
                             <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 fnt15 txt7  ${!title || !content || !imgpost ? "bkblue nodrop" : "bkpureblue csrpntr"}`} onClick={() => { modifypost(item._id) }} disabled={!title || !content || !imgpost}>Modify</button>
                         </div>
                     </div>
