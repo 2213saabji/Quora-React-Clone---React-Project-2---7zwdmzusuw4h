@@ -1,3 +1,24 @@
+.mainflex{
+    display: flex;
+    margin-top: 40px;
+}
+.mainflexleft{
+    width:15%;
+}
+.mainflexright{
+    width: 85% ;
+}
+.mainflexrightadd{
+    width: 500px;
+    position: sticky;
+}
+.mainflexrightcenter{
+    height: 100vh;
+    overflow-y: scroll;
+}
+.mainflexrightcenter::-webkit-scrollbar{
+    display: none;
+}
 .wholewebsiteMaindiv {
     height: 100vh;
     overflow-y: scroll;
@@ -60,7 +81,7 @@
     border-radius: 5px;
     width: 100%;
     padding: 10px;
-    cursor: pointer;
+    cursor: pointer;word-break: break-all;
 }
 
 .serachinputpop>p:hover {
@@ -128,7 +149,6 @@
 .featurecomingsoonmessage {
     background-image: url("https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.empty_states.dormant_lightmode.png-26-c4532c98034818a0.png") !important;
     background-size: 100% 100% !important;
-    /* transform: translateX(-20px); */
     height: 170px;
     width: 170px;
 }
@@ -151,4 +171,36 @@
 .authordetailsdiv p {
     letter-spacing: 0.2px;
     color: #d3d3d320;
+}
+
+
+@media (max-width:900px){
+    .mainflexrightadd{
+        display: none !important;
+    }
+    .mainflex{
+        justify-content: center;
+    }
+    .mainflexright{
+        gap: 10px;
+    }
+    .mainflexrightcenter{
+        width: 70%;
+        margin-right: 20px;
+    }
+    .mainflexrightadd{
+        width: 30%;
+    }
+}
+@media (max-width:700px){
+    .mainflexleft{
+        display: none;
+    }
+}
+
+@media (max-width:600px){
+    .upvoteDownvoteComment{
+        scale: 0.8;
+        margin-left: -50px;
+    }
 }

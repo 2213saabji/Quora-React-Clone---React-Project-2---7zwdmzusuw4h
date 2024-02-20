@@ -131,3 +131,8 @@ height: 60px;
 .marginleftwithcondition{
     margin-left: 50px !important;
 }
+
+.posteddate{
+    align-self: flex-end;
+}
+

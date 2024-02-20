@@ -46,6 +46,8 @@ export const dot3icon=<svg width="24" height="24" viewBox="0 0 24 24" fill="none
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
+export const months3char=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
 export const baseurl="https://academics.newtonschool.co/api/v1"
 
 export const projectid="7zwdmzusuw4h"

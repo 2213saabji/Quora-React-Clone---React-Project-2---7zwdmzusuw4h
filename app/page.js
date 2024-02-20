@@ -29,7 +29,7 @@ export default function page() {
       )).json();
       setdata(response.data)
     } catch (error) {
-      // alert(error);
+      alert(error);
     }
   }, [toggle])
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function page() {
       <div className={`mainflexleft mt10 pl10 pt20 pb10 pr10`}>
         <Leftdivforspaces toggle={toggle} baseurl={baseurl} theme={theme} settheme={settheme} loader={loader} setloader={setloader} blackscreen3={blackscreen3} setblackscreen3={setblackscreen3} themecheck={themecheck} />
       </div>
-      <div className={`mainflexright  flex ${themecheck("txt5", "txt1")}`}>
+      <div className={`mainflexright g10  flex ${themecheck("txt5", "txt1")}`}>
         <div className={`mainflexrightcenter pt30 pt10 w100per`}>
           <div className={`p10 pt20 brdr-r3 ${themecheck("bkwhite", "bklightblack")}`}>
             <div className={`flex`}>
@@ -75,8 +75,8 @@ export default function page() {
 
         </div>
         <div className={`mainflexrightadd flexa flexc pt30`}>
-          <iframe style={{ width: "100%", border: "none", maxWidth: "300px", height: "300px", overflow: "hidden" }} src='https://s0.2mdn.net/sadbundle/12492554015069590311/index.html?ev=01_250' />
-          <iframe style={{ width: "100%", maxWidth: "300px", height: "300px", overflow: "hidden" }} src='https://s0.2mdn.net/sadbundle/12492554015069590311/index.html?ev=01_250' />
+          <iframe style={{ width: "100%", border: "none", maxWidth: "300px", height: "300px", overflow: "scroll" }} src='https://s0.2mdn.net/sadbundle/12492554015069590311/index.html?ev=01_250' />
+          <iframe style={{ width: "100%", maxWidth: "300px", height: "300px", overflow: "scroll" }} src='https://s0.2mdn.net/sadbundle/12492554015069590311/index.html?ev=01_250' />
         </div>
       </div>
     </>

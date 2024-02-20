@@ -310,8 +310,8 @@ function Navbar() {
                             }
                         >
                             <h2 className={`userlogo ml10 w500 flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
-                            <h3 className={`useremailmainbar w500 mt10 pl10 pr20 mb20 pb5 ${themecheck("brdrwdth1", "brdrwdth1")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt5", "txt1")}`}>{JSON.parse(localStorage.getItem("userdetails")).email}</h3>
-                            <h5 className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={()=>{userprofile(),handleClosee()}}>Profile Setting</h5>
+                            <h3 className={`useremailmainbar w500 mt10 pl10 pr20 mb20 pb5 ${themecheck("brdrwdth1", "brdrwdth1")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt5", "txt1")}`}>{JSON.parse(localStorage.getItem("userdetails")).email} </h3>
+                            <h5 className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={()=>{userprofile(),handleClosee()}}>Profile</h5>
                             <div className={`flexa flexjsb pl10 pb10 brdrb1 mb10 ${themecheck("brdrlightgray", "brdrllgray")}`}><h5 className={`${themecheck("txt5", "txt1")}`}>Dark mode</h5><FormControlLabel style={{ transform: "translate(13px)" }} control={<MaterialUISwitch sx={{ m: 1 }} checked={theme == "dark"} />} onChange={themechanger} checked={theme === "dark"} /></div>
                             <h5 onClick={() => { logoutuser() }} className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onclick={()=>{handleClosee()}}>Logout</h5>
                         </Menu>

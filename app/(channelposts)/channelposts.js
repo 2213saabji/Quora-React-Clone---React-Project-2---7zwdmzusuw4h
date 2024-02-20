@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../(styles)/home.css"
-import { baseurl, dot3icon, downvoteicon, imagesicon, roundmessageicon, upvoteicon } from '../(navbar)/constant'
+import { baseurl, dot3icon, downvoteicon, imagesicon, months3char, roundmessageicon, upvoteicon } from '../(navbar)/constant'
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -159,7 +159,10 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                             :
                             <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{item.author.name.charAt(0)}</h2>
                         }
+                        <div>
                         <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.channel.name}</h4>
+                        <div className={`flex ${themecheck("txt5","txt1")}`}><p className={`fnt12 posteddate`}>Posted at</p> &nbsp;<p className={`fnt11 posteddate`}>{item.createdAt[8]}{item.createdAt[9]}{months3char[parseInt(item.createdAt[5] == 1 ? 10 : 0) + parseInt(item.createdAt[6])]}, {item.createdAt[0]}{item.createdAt[1]}{item.createdAt[2]}{item.createdAt[3]}</p></div>
+                        </div>
                     </div>
                     <h4 className={`${themecheck("txt8", "txt7")} mt10 mb10`}>{item.title}</h4>
                     <p className={`homecontent w400 ${themecheck("txt8", "txt7")}`}>{item.content}</p>
@@ -167,10 +170,10 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                 {item.images[0] && <div><img className={`w100per`} style={{ height: "100%" }} src={item.images[0]} alt="image" /></div>}
 
                 <div className={`flexa flexjsb w100per`}>
-                    <div className={`flex w100per pl20 pr20 pb5 mt5`}>
+                    <div className={`upvoteDownvoteComment flex w100per pl20 pr20 pb5 mt5`}>
                         <div className={`brdr-r50 csrpntr flex brdr1 ${themecheck("brdrlightgray", "brdrllgray")} `}>
-                            <p className={`flexa  brdrr1 upvotebtn pt5 pl10 pr10 pb5 fnt13 ${item.isLiked ? "upvotebtncolor" : ""} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { clicklike(item.isLiked, item._id) }}>{upvoteicon}&nbsp;Upvote . &nbsp;{item.likeCount}</p>
-                            <p className={`pl10 pr10 fnt13  downvotebtn flexja ${item.isDisliked ? "downvotebtncolor" : ""} ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { clickdislike(item.isDisliked, item._id) }}>{downvoteicon}&nbsp;Downvote . &nbsp;{item.dislikeCount}</p>
+                            <p className={`flexa  brdrr1 upvotebtn pt5 pl10 pr10 pb5 fnt13 txtrpnone ${item.isLiked ? "upvotebtncolor" : ""} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { clicklike(item.isLiked, item._id) }}>{upvoteicon}&nbsp;Upvote . &nbsp;{item.likeCount}</p>
+                            <p className={`pl10 pr10 fnt13  downvotebtn txtrpnone flexja ${item.isDisliked ? "downvotebtncolor" : ""} ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { clickdislike(item.isDisliked, item._id) }}>{downvoteicon}&nbsp;Downvote . &nbsp;{item.dislikeCount}</p>
                         </div>
                         <div className={` csrpntr brdr-r12 flexja ml20 ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { setcommentdiv(!commentdiv) }}>{roundmessageicon}&nbsp;{item.commentCount}</div>
                     </div>
@@ -218,17 +221,14 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                                 </React.Fragment>
                             </MenuItem>
                             <MenuItem onClick={() => { handleClose(), setmodify(true) }}>Modify Post</MenuItem>
-
-
                         </Menu>
-
                     </>}
                 </div>
                 {commentdiv && <div>
                     <div className={`commentdiv bklgray w100per flexa pl10 flexjsb`}>
                         <div className={`flexa w100per`}>
                             <h2 className={`postimg w500 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
-                            <input className={`commentinput pl20 ml5 ${themecheck("bkwhite", "bklightblack")} ${themecheck("txt8", "txt7")}`} value={comment} onChange={(e) => { setcomment(e.target.value) }} type='text' placeholder='Add a comment....' />
+                            <input className={`commentinput pl20 pr20 ml5 ${themecheck("bkwhite", "bklightblack")} ${themecheck("txt8", "txt7")}`} value={comment} onChange={(e) => { setcomment(e.target.value) }} type='text' placeholder='Add a comment....' />
                         </div>
                         <button className={`commentbutton fnt13 brdr-r50 mr5 txtrpnone pl20 pr20 txt7 ${themecheck(comment ? "bklightblue2" : "bklightgray", comment ? "bklightblue2" : "")} ${themecheck(comment ? "txt7" : "txt8", comment ? "txt7" : "txt8")}`} onClick={() => { commentsend(); setcommentdiv(false); setcomment(""); settoggle(!toggle); refreshcommentdiv() }} disabled={!comment}>Add comment</button>
                     </div>
