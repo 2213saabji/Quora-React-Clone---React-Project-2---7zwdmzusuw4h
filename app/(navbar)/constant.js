@@ -48,6 +48,10 @@ export const months = ["January", "February", "March", "April", "May", "June", "
 
 export const months3char=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+export const AVATAR_BACKGROUND_COLORS = ["#800080", "#a52a2a", "#ee82ee", "#008080", "#ff7f50", "#800020", "#b7410e", "#4b0082", "#fa8072", "#00ffff", "#dc143c","#31671d", "#43254f", "#ff00ff", "#f28500", "#733635", "#f4c430", "#de3163", "#50c878", "#0f52ba", "#65000b"]
+
+export const SPACE_BACKGROUND_IMAGES=["bkpic1.jpeg","bkpic2.webp","bkpic3.jpeg","bkpic4.jpeg","bkpic5.jpeg","bkpic6.jpeg"]
+
 export const baseurl="https://academics.newtonschool.co/api/v1"
 
 export const projectid="7zwdmzusuw4h"

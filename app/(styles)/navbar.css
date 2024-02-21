@@ -173,6 +173,10 @@
     color: #d3d3d320;
 }
 
+.emptymainflexright{
+    height: 100vh;
+}
+
 
 @media (max-width:900px){
     .mainflexrightadd{

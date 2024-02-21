@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '@mui/icons-material/Search';
 import { useRouter } from 'next/navigation'
-import { baseurl, logoicon, navicon } from './constant';
+import { AVATAR_BACKGROUND_COLORS, baseurl, logoicon, navicon } from './constant';
 import { allContext } from '../layout';
 import { styled, alpha } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
@@ -283,7 +283,7 @@ function Navbar() {
                             aria-haspopup="true"
                             onClick={handleClickk}
                         >
-                            <h2 className={`userlogo w500 fnt23 flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
+                            <h2 className={`userlogo w500 fnt23 flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0))%20]}}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
                         </IconButton>
                         <Menu
                             id="long-menu"
@@ -309,7 +309,7 @@ function Navbar() {
                                 }
                             }
                         >
-                            <h2 className={`userlogo ml10 w500 flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
+                            <h2 className={`userlogo ml10 w500 flexja  ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0))%20]}}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
                             <h3 className={`useremailmainbar w500 mt10 pl10 pr20 mb20 pb5 ${themecheck("brdrwdth1", "brdrwdth1")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt5", "txt1")}`}>{JSON.parse(localStorage.getItem("userdetails")).email} </h3>
                             <h5 className={`flexa flexjsb pl10 csrpntr pt10 pb10 ${themecheck("bghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={()=>{userprofile(),handleClosee()}}>Profile</h5>
                             <div className={`flexa flexjsb pl10 pb10 brdrb1 mb10 ${themecheck("brdrlightgray", "brdrllgray")}`}><h5 className={`${themecheck("txt5", "txt1")}`}>Dark mode</h5><FormControlLabel style={{ transform: "translate(13px)" }} control={<MaterialUISwitch sx={{ m: 1 }} checked={theme == "dark"} />} onChange={themechanger} checked={theme === "dark"} /></div>

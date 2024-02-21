@@ -7,15 +7,16 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-.brdrbx{
+.brdrbx {
     box-sizing: border-box !important;
 }
+
 .posfix {
     position: fixed !important;
     top: 0 !important;
 }
 
-.txtrpnone{
+.txtrpnone {
     text-wrap: nowrap !important;
 }
 
@@ -303,147 +304,147 @@
     font-size: 25px !important;
 }
 
-.svgfill0 svg{
+.svgfill0 svg {
     fill: #275293 !important;
 }
 
-.svgfill1 svg{
+.svgfill1 svg {
     fill: #b1b3b6 !important;
 }
 
-.svgfill2 svg{
+.svgfill2 svg {
     fill: #8b8b8a !important;
 }
 
-.svgfill3 svg{
+.svgfill3 svg {
     fill: #d5d6d6 !important;
 }
 
-.svgfill4 svg{
+.svgfill4 svg {
     fill: #939393 !important;
 }
 
-.svgfill5 svg{
+.svgfill5 svg {
     fill: #636466 !important;
 }
 
-.svgfill6 svg{
+.svgfill6 svg {
     fill: #8E9092 !important;
 }
 
-.svgfill7 svg{
+.svgfill7 svg {
     fill: white !important;
 }
 
-.svgfill8 svg{
+.svgfill8 svg {
     fill: black !important;
 }
 
-.svgpathfill0 svg path{
+.svgpathfill0 svg path {
     fill: #275293 !important;
 }
 
-.svgpathfill1 svg path{
+.svgpathfill1 svg path {
     fill: #b1b3b6 !important;
 }
 
-.svgpathfill2 svg path{
+.svgpathfill2 svg path {
     fill: #8b8b8a !important;
 }
 
-.svgpathfill3 svg path{
+.svgpathfill3 svg path {
     fill: #d5d6d6 !important;
 }
 
-.svgpathfill4 svg path{
+.svgpathfill4 svg path {
     fill: #939393 !important;
 }
 
-.svgpathfill5 svg path{
+.svgpathfill5 svg path {
     fill: #636466 !important;
 }
 
-.svgpathfill6 svg path{
+.svgpathfill6 svg path {
     fill: #8E9092 !important;
 }
 
-.svgpathfill7 svg path{
+.svgpathfill7 svg path {
     fill: white !important;
 }
 
-.svgpathfill8 svg path{
+.svgpathfill8 svg path {
     fill: black !important;
 }
 
-.svgstroke0 svg{
+.svgstroke0 svg {
     stroke: #275293 !important;
 }
 
-.svgstroke1 svg{
+.svgstroke1 svg {
     stroke: #b1b3b6 !important;
 }
 
-.svgstroke2 svg{
+.svgstroke2 svg {
     stroke: #8b8b8a !important;
 }
 
-.svgstroke3 svg{
+.svgstroke3 svg {
     stroke: #d5d6d6 !important;
 }
 
-.svgstroke4 svg{
+.svgstroke4 svg {
     fill: #939393 !important;
 }
 
-.svgstroke5 svg{
+.svgstroke5 svg {
     stroke: #636466 !important;
 }
 
-.svgstroke6 svg{
+.svgstroke6 svg {
     stroke: #8E9092 !important;
 }
 
-.svgstroke7 svg{
+.svgstroke7 svg {
     stroke: white !important;
 }
 
-.svgstroke8 svg{
+.svgstroke8 svg {
     stroke: black !important;
 }
 
-.svgpathstroke0 svg path{
+.svgpathstroke0 svg path {
     stroke: #275293 !important;
 }
 
-.svgpathstroke1 svg path{
+.svgpathstroke1 svg path {
     stroke: #b1b3b6 !important;
 }
 
-.svgpathstroke2 svg path{
+.svgpathstroke2 svg path {
     stroke: #8b8b8a !important;
 }
 
-.svgpathstroke3 svg path{
+.svgpathstroke3 svg path {
     stroke: #d5d6d6 !important;
 }
 
-.svgpathstroke4 svg path{
+.svgpathstroke4 svg path {
     stroke: #939393 !important;
 }
 
-.svgpathstroke5 svg path{
+.svgpathstroke5 svg path {
     stroke: #636466 !important;
 }
 
-.svgpathstroke6 svg path{
+.svgpathstroke6 svg path {
     stroke: #8E9092 !important;
 }
 
-.svgpathstroke7 svg path{
+.svgpathstroke7 svg path {
     stroke: white !important;
 }
 
-.svgpathstroke8 svg path{
+.svgpathstroke8 svg path {
     stroke: black !important;
 }
 
@@ -644,22 +645,23 @@
     color: black !important;
 }
 
-.txt9{
+.txt9 {
     color: #2e69ff !important;
 }
 
-.txt10{
-    color:#c9c9ca !important;
+.txt10 {
+    color: #c9c9ca !important;
 }
 
-.txtblue{
-    color:blue !important;
+.txtblue {
+    color: blue !important;
 }
-.brdrpureblue{
+
+.brdrpureblue {
     border-color: blue !important;
 }
 
-.brdrlgray{
+.brdrlgray {
     border-color: rgba(128, 128, 128, 0.304) !important;
 }
 
@@ -669,6 +671,18 @@
 
 .brdrllgray {
     border-color: rgba(211, 211, 211, 0.184) !important;
+}
+
+.brdrblack {
+    border-color: #181818 !important;
+}
+
+.brdrwhite {
+    border-color: white !important;
+}
+
+.brdrwhite2 {
+    border-color: #f8f4f4 !important;
 }
 
 .brdrwdth1 {
@@ -695,9 +709,10 @@
     border-width: 6px !important;
 }
 
-.bktransparent{
+.bktransparent {
     background-color: transparent !important;
 }
+
 .bklightblack {
     background-color: #262626 !important;
 }
@@ -706,7 +721,7 @@
     background-color: #181818 !important;
 }
 
-.bkllwhite{
+.bkllwhite {
     background-color: #f8f4f4;
 }
 
@@ -730,16 +745,15 @@
     background-color: #1471ff !important;
 }
 
-.bkblueopacity7{
+.bkblueopacity7 {
     background-color: #0000ff99 !important;
-
 }
 
 .bkblueopacity3 {
     background-color: #EBF0FF !important;
 }
 
-.bkpureblue{
+.bkpureblue {
     background-color: blue !important;
 }
 
@@ -754,10 +768,12 @@
 .bklightgray {
     background-color: lightgray !important;
 }
-.bklgray{
+
+.bklgray {
     background-color: rgba(211, 211, 211, 0.4);
 
 }
+
 .bkllgray {
     background-color: rgba(211, 211, 211, 0.119);
 }
@@ -766,7 +782,7 @@
     cursor: pointer !important;
 }
 
-.nodrop{
+.nodrop {
     cursor: no-drop !important;
 }
 
@@ -934,10 +950,11 @@
     height: 100% !important;
 }
 
-.iscale08{
+.iscale08 {
     scale: 0.8 !important;
 }
-.fgrow1{
+
+.fgrow1 {
     flex-grow: 1 !important;
 }
 

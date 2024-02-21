@@ -157,7 +157,7 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                         {item.channel.image ?
                             <img className={`profileimage mr10 csrpntr`} src={item.channel.image} alt="profile" onClick={() => { routetouserpage(item.author._id) }} />
                             :
-                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{item.author.name.charAt(0)}</h2>
+                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(item.author.name.charCodeAt(0))%20]}}>{item.author.name.charAt(0)}</h2>
                         }
                         <div>
                         <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.channel.name}</h4>
@@ -227,7 +227,7 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                 {commentdiv && <div>
                     <div className={`commentdiv bklgray w100per flexa pl10 flexjsb`}>
                         <div className={`flexa w100per`}>
-                            <h2 className={`postimg w500 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
+                            <h2 className={`postimg w500 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0))%20]}}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
                             <input className={`commentinput pl20 pr20 ml5 ${themecheck("bkwhite", "bklightblack")} ${themecheck("txt8", "txt7")}`} value={comment} onChange={(e) => { setcomment(e.target.value) }} type='text' placeholder='Add a comment....' />
                         </div>
                         <button className={`commentbutton fnt13 brdr-r50 mr5 txtrpnone pl20 pr20 txt7 ${themecheck(comment ? "bklightblue2" : "bklightgray", comment ? "bklightblue2" : "")} ${themecheck(comment ? "txt7" : "txt8", comment ? "txt7" : "txt8")}`} onClick={() => { commentsend(); setcommentdiv(false); setcomment(""); settoggle(!toggle); refreshcommentdiv() }} disabled={!comment}>Add comment</button>
@@ -243,7 +243,7 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                         {item.author.profileImage ?
                             <img className={`profileimage mr10 csrpntr`} src={item.author.profileImage} alt="profile" onClick={() => { routetouserpage(item.author._id) }} />
                             :
-                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{item.author.name.charAt(0)}</h2>
+                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(item.author.name.charCodeAt(0))%20]}}>{item.author.name.charAt(0)}</h2>
                         }
                         <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.author.name}</h4>
                     </div>

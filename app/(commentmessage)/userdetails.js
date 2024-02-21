@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { baseurl, dot3icon } from '../(navbar)/constant';
+import { AVATAR_BACKGROUND_COLORS, baseurl, dot3icon } from '../(navbar)/constant';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -76,7 +76,10 @@ export default function Userdetails({ refreshcommentdiv, toggle, settoggle, fetc
 
     return (<>{authordetails &&<div  className={` w100per flex flexjsb`}>
         <div className={`authordetailsdiv ${marginstatus ? "mt20" : ""} w100per flexa`}>
-            {authordetails.profileImage ? (<img className={`profileimage mr10 csrpntr ml10  ${marginstatus ? "marginleftwithcondition" : ""}`} src={authordetails.profileImage} alt="profile" onClick={() => { routetouserpage(authordetails.profileImage) }} />) : (<h2 className={`postimg w500 mr10 ml10 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{authordetails.name.charAt(0)}</h2>)}
+            {authordetails.profileImage ?
+             (<img className={`profileimage mr10 csrpntr ml10  ${marginstatus ? "marginleftwithcondition" : ""}`} src={authordetails.profileImage} alt="profile" onClick={() => { routetouserpage(authordetails.profileImage) }} />)
+              :
+             (<h2 className={`postimg w500 mr10 ml10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(authordetails.name.charCodeAt(0))%20]}}>{authordetails.name.charAt(0)}</h2>)}
             <div className={`w100per`}>
                 <div>
                     <h4 className={`fnt13 w600 mt10 ${themecheck("txt8", "txt7")}`}>{authordetails.name}</h4>

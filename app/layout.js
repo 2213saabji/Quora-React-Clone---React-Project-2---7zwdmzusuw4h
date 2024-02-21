@@ -206,7 +206,7 @@ export default function RootLayout({ children }) {
               {children}
             </Box>
             
-            <div className={`commentSuccessfullMessageDiv opacity1 flexj w100per ${showmessage?"opacity1":"opacity0"}`}><div className={`${themecheck("txt5","txt1")} bklightblue2 txt7 brdr-r50 pt5 pb5 pl30 pr30 w300`}>Thank you for your comment!</div></div>
+          {showmessage &&  <div className={`commentSuccessfullMessageDiv opacity1 flexj w100per ${showmessage?"opacity1":"opacity0"}`}><div className={`${themecheck("txt5","txt1")} bklightblue2 txt7 brdr-r50 pt5 pb5 pl30 pr30 w300`}>Thank you for your comment!</div></div>}
             {blackscreen3 && <div className={`blackscreen2 flexja`} onClick={() => { closepopups() }}>
               <div className={`createPostDiv flex flexc brdr-r12 ${themecheck("bkwhite", "bklightblack")}`} onClick={(e) => { e.stopPropagation() }}>
                 <div className={`w100per createpostdiv flex flexc fgrow1 brdr-r12`}>

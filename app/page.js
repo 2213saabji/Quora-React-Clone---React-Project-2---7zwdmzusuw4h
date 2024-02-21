@@ -3,7 +3,7 @@ import Link from "next/link"
 import "./(styles)/home.css"
 import Leftdivforspaces from "./(leftmaindiv)/Leftdivforspaces";
 import { allContext } from "./layout";
-import { baseurl, copypencilicon, downvoteicon, messageicon, pencilicon, roundmessageicon, upvoteicon } from "./(navbar)/constant";
+import { AVATAR_BACKGROUND_COLORS, baseurl, copypencilicon, downvoteicon, messageicon, pencilicon, roundmessageicon, upvoteicon } from "./(navbar)/constant";
 import { useEffect, useState, useMemo, use } from "react";
 import { useRouter } from "next/navigation";
 import Home from "./(home)/Home"
@@ -51,7 +51,7 @@ export default function page() {
         <div className={`mainflexrightcenter pt30 pt10 w100per`}>
           <div className={`p10 pt20 brdr-r3 ${themecheck("bkwhite", "bklightblack")}`}>
             <div className={`flex`}>
-              <h2 className={`userlogohome w500 mr10 fnt20  flexja ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
+              <h2 className={`userlogohome w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0))%20]}}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
               <p className={`p10 pl20 brdr1 brdr-r50 fnt14 flexa w100per csrpntr ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt5", "txt1")}`} onClick={() => { setblackscreen2(true), setactivePostOrQueDiv(false) }}> What do you want to ask or share?</p>
             </div>
             <div className={`flexja mt5`}>

@@ -41,13 +41,6 @@
     width: 700px;
 }
 
-.emptypostsmessage{
-    background-image: url("https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.empty_states.dormant_lightmode.png-26-c4532c98034818a0.png") !important;
-    background-size: 100% 100% !important;
-    transform: translateX(-20px);
-    height: 200px;
-    width: 200px;
-}
 
 .userPageProfileImg {
     height: 150px;

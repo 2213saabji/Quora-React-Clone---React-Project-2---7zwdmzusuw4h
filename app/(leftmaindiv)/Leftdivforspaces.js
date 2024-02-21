@@ -35,7 +35,7 @@ export default function Leftdivforspaces({toggle, baseurl, theme, settheme, load
 
   return (
     <div className={`leftdivforspaces flex flexc g10`}>
-      <div className={`flex p10 mb10  ${themecheck("bklightgray", "bkllgray")} csrpntr`}>{plusicon}<p className={`createspacestxt txtrpnone ${themecheck("txt5", "txt1")}`} onClick={()=>{setblackscreen3(true)}}>Create Space</p></div>
+      <div className={`flex p10 mb10  ${themecheck("bklightgray", "bkllgray")} csrpntr`} onClick={()=>{setblackscreen3(true)}}>{plusicon}<p  className={`createspacestxt txtrpnone ${themecheck("txt5", "txt1")}`} onClick={()=>{setblackscreen3(true)}}>Create Space</p></div>
       <div>
       {leftdivdata &&
         leftdivdata.map((item, index) => ((disablerepeatuser !== item.name) && (disablerepeatuser = item.name, <div key={index} className={`channeldivs flexa p5 brdr-r3 csrpntr ${themecheck("darkbghvr", "bghvr")}`} onClick={()=>{pushtochannel(item._id)}}>
