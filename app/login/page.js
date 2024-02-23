@@ -177,6 +177,7 @@ export default function page() {
     }
 
     return (
+         <>{!logintoken &&
         <div className="login_main_div">
             <div className={`login_card ${themecheck("bkwhite", "bklightblack")}`}>
                 <div className="logincard_main">
@@ -252,6 +253,8 @@ export default function page() {
             </div>
             }
         </div>
+}
+</>
     )
 }
 
