@@ -1,5 +1,5 @@
 'use client'
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { allContext } from "../layout";
 import { useState, useRef } from "react";
 import { logoicon, googleicon, facebookicon, crossicon, baseurl, projectid } from "../(navbar)/constant";
@@ -24,16 +24,16 @@ export default function page() {
     const [signup, setsignup] = useState(false);
 
     function emailcorrectsyntex() {
-            return /^[^\s@]+@[^\s@]+\.(?:com)$/.test(loginemailinput);
+        return /^[^\s@]+@[^\s@]+\.(?:com)$/.test(loginemailinput);
     }
 
     function emailcorrectsyntexsignup() {
-            return /^[^\s@]+@[^\s@]+\.(?:com)$/.test(signupemailinput);
+        return /^[^\s@]+@[^\s@]+\.(?:com)$/.test(signupemailinput);
     }
 
     function themechanger() {
         settheme(theme === "light" ? "dark" : "light")
-        localStorage.setItem("theme",localStorage.getItem("theme")=="light"?"dark":"light");
+        localStorage.setItem("theme", localStorage.getItem("theme") == "light" ? "dark" : "light");
     }
 
     function themecheck(val1, val2) {
@@ -55,11 +55,11 @@ export default function page() {
         val.style.boxShadow = "none";
     }
 
-    useEffect(()=>{
-        if(!localStorage.getItem("theme")){
-            localStorage.setItem("theme","light");
+    useEffect(() => {
+        if (!localStorage.getItem("theme")) {
+            localStorage.setItem("theme", "light");
         }
-    },[])
+    }, [])
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
         height: 34,
@@ -107,158 +107,155 @@ export default function page() {
         },
     }));
 
-    async function fetchsignup(){
-        try{
-            const response=await( await fetch(`${baseurl}/user/signup`,
-            {
-                method: "POST",
-                headers: {
-                    'projectID': {projectid},
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: signupnameinput,
-                    email: signupemailinput,
-                    password: signuppasswordinput,
-                    appType: 'quora'
-                })
+    async function fetchsignup() {
+        try {
+            const response = await (await fetch(`${baseurl}/user/signup`,
+                {
+                    method: "POST",
+                    headers: {
+                        'projectID': { projectid },
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: signupnameinput,
+                        email: signupemailinput,
+                        password: signuppasswordinput,
+                        appType: 'quora'
+                    })
 
-            })).json()
-            if(response.status=="success"){
-                localStorage.setItem("token",JSON.stringify(response.token));
+                })).json()
+            if (response.status == "success") {
+                localStorage.setItem("token", JSON.stringify(response.token));
                 setlogintoken(response.token);
-                localStorage.setItem("userdetails",JSON.stringify(response.data.user))
+                localStorage.setItem("userdetails", JSON.stringify(response.data.user))
                 router.push("/");
             }
-            else if(response.status=="fail" && response.message=="User already exists"){
+            else if (response.status == "fail" && response.message == "User already exists") {
                 alert(response.message);
                 setsignupnameinput("");
                 setsignupemailinput("");
                 setsignuppasswordinput("");
             }
         }
-        catch(error){
+        catch (error) {
             alert(error);
         }
     }
 
-    async function fetchlogin(){
-        try{
-            const response=await( await fetch(`${baseurl}/user/login`,
-            {
-                method: "POST",
-                headers: {
-                    'projectID': {projectid},
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: loginemailinput,
-                    password: loginpasswordinput,
-                    appType: 'quora'
-                })
+    async function fetchlogin() {
+        try {
+            const response = await (await fetch(`${baseurl}/user/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        'projectID': { projectid },
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: loginemailinput,
+                        password: loginpasswordinput,
+                        appType: 'quora'
+                    })
 
-            })).json()
-            if(response.status=="success"){
-                localStorage.setItem("token",JSON.stringify(response.token));
+                })).json()
+            if (response.status == "success") {
+                localStorage.setItem("token", JSON.stringify(response.token));
                 setlogintoken(response.token);
-                localStorage.setItem("userdetails",JSON.stringify(response.data))
+                localStorage.setItem("userdetails", JSON.stringify(response.data))
                 router.push("/");
 
             }
-            else if(response.status=="fail" && response.message=="Incorrect EmailId or Password"){
+            else if (response.status == "fail" && response.message == "Incorrect EmailId or Password") {
                 alert(response.message);
                 setloginemailinput("")
                 setloginpasswordinput("")
             }
         }
-        catch(error){
+        catch (error) {
             alert(error);
         }
     }
 
     return (
-<<<<<<< HEAD
+
         <>{!logintoken &&
-=======
-         <>{!logintoken &&
->>>>>>> a763bc50c6c4c020569e36c47658ac38a1d4dc23
-        <div className="login_main_div">
-            <div className={`login_card ${themecheck("bkwhite", "bklightblack")}`}>
-                <div className="logincard_main">
-                    <div className="logoiconouterdiv g20">
-                        <div className="logoiconquora"> {logoicon}</div>
-                        <div className={`${themecheck("txt5", "txt1")}`}>A place to share knowledge and better understand the world</div>
-                    </div>
-                    <div className={`logincenterdiv flex flexjsb`}>
-                        <div className="logincenterleftdiv flexa flexc g20">
-                            <p className={`fnt13 ${themecheck("txt4", "txt6")}`}>By continuing you indicate that you agree to <br /> Quora’s Terms of Service and Privacy Policy.</p>
-                            <div className="flex flexc g10">
-                                <div className={`onlinesignin flexa g10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt8", "txt7")}`}>{googleicon} <p className="fnt14">Continue with Google(coming soon)</p></div>
-                                <div className={`onlinesignin flexa g10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt8", "txt7")}`}>{facebookicon} <p className="fnt14">Continue with Facebook(coming soon)</p></div>
-                            </div>
-                            <p className={`signupbutton bghvr brdr-r50 pl10 pr10 flexja ${themecheck("txt5", "txt1")}`} onClick={() => { setsignup(true) }}>Sign up with email</p>
-                            <div className={`flexja flexc ${themecheck("txt8", "txt7")}`}>
-                                <p>{themecheck("LightMode", "DarkMode")}</p>
-                                <FormControlLabel style={{ transform: "translate(13px)" }} control={<MaterialUISwitch sx={{ m: 1 }} checked={theme=="dark"} />} onChange={themechanger} checked={theme === "dark"} />
-                            </div>
+            <div className="login_main_div">
+                <div className={`login_card ${themecheck("bkwhite", "bklightblack")}`}>
+                    <div className="logincard_main">
+                        <div className="logoiconouterdiv g20">
+                            <div className="logoiconquora"> {logoicon}</div>
+                            <div className={`${themecheck("txt5", "txt1")}`}>A place to share knowledge and better understand the world</div>
                         </div>
-                        <p className={`${themecheck("brdrlightgray", "brdrllgray")}`}></p>
-                        <div className="logincenterrightdiv flexa flexc g20 ml5">
-                            <h3 className={` w90per w400 pb10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")}`}>Login</h3>
-                            <form className={`w100per ml20`} onSubmit={(e)=>{e.preventDefault(); fetchlogin()}}>
-                            <div className={`w95per  flex flexc g20`}>
-                                <div className={`w90per flex flexc g10`}>
-                                    <h4 className={`${themecheck("txt8", "txt7")}`}>Email</h4>
-                                    <input value={loginemailinput} onChange={(e) => { setloginemailinput(e.target.value)}} ref={logininputemail} onFocus={() => { theme == "dark" ? onfocuslogininputdark(logininputemail.current) : onfocuslogininputlight(logininputemail.current) }} onBlur={() => { onblurlogininput(logininputemail.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="email" placeholder="Your email" />
+                        <div className={`logincenterdiv flex flexjsb`}>
+                            <div className="logincenterleftdiv flexa flexc g20">
+                                <p className={`fnt13 ${themecheck("txt4", "txt6")}`}>By continuing you indicate that you agree to <br /> Quora’s Terms of Service and Privacy Policy.</p>
+                                <div className="flex flexc g10">
+                                    <div className={`onlinesignin flexa g10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt8", "txt7")}`}>{googleicon} <p className="fnt14">Continue with Google(coming soon)</p></div>
+                                    <div className={`onlinesignin flexa g10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt8", "txt7")}`}>{facebookicon} <p className="fnt14">Continue with Facebook(coming soon)</p></div>
                                 </div>
-                                <div className={`w90per flex flexc g10`}>
-                                    <h4 className={`${themecheck("txt8", "txt7")}`}>Password</h4>
-                                    <input value={loginpasswordinput} onChange={(e) => { setloginpasswordinput(e.target.value) }} ref={logininputpassword} onFocus={() => { theme == "dark" ? onfocuslogininputdark(logininputpassword.current) : onfocuslogininputlight(logininputpassword.current) }} onBlur={() => { onblurlogininput(logininputpassword.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="password" placeholder="Your password" />
+                                <p className={`signupbutton bghvr brdr-r50 pl10 pr10 flexja ${themecheck("txt5", "txt1")}`} onClick={() => { setsignup(true) }}>Sign up with email</p>
+                                <div className={`flexja flexc ${themecheck("txt8", "txt7")}`}>
+                                    <p>{themecheck("LightMode", "DarkMode")}</p>
+                                    <FormControlLabel style={{ transform: "translate(13px)" }} control={<MaterialUISwitch sx={{ m: 1 }} checked={theme == "dark"} />} onChange={themechanger} checked={theme === "dark"} />
                                 </div>
                             </div>
-                            <button className={`dfnt16 mr30 bklightblue ${loginpasswordinput && emailcorrectsyntex() && loginpasswordinput.length >= 8 ? "bkblue" : ""} `} disabled={(loginpasswordinput) ? (!emailcorrectsyntex() && !loginpasswordinput.length >= 8) ? true : false : true}>Login</button>
-                            </form>
+                            <p className={`${themecheck("brdrlightgray", "brdrllgray")}`}></p>
+                            <div className="logincenterrightdiv flexa flexc g20 ml5">
+                                <h3 className={` w90per w400 pb10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")}`}>Login</h3>
+                                <form className={`w100per ml20`} onSubmit={(e) => { e.preventDefault(); fetchlogin() }}>
+                                    <div className={`w95per  flex flexc g20`}>
+                                        <div className={`w90per flex flexc g10`}>
+                                            <h4 className={`${themecheck("txt8", "txt7")}`}>Email</h4>
+                                            <input value={loginemailinput} onChange={(e) => { setloginemailinput(e.target.value) }} ref={logininputemail} onFocus={() => { theme == "dark" ? onfocuslogininputdark(logininputemail.current) : onfocuslogininputlight(logininputemail.current) }} onBlur={() => { onblurlogininput(logininputemail.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="email" placeholder="Your email" />
+                                        </div>
+                                        <div className={`w90per flex flexc g10`}>
+                                            <h4 className={`${themecheck("txt8", "txt7")}`}>Password</h4>
+                                            <input value={loginpasswordinput} onChange={(e) => { setloginpasswordinput(e.target.value) }} ref={logininputpassword} onFocus={() => { theme == "dark" ? onfocuslogininputdark(logininputpassword.current) : onfocuslogininputlight(logininputpassword.current) }} onBlur={() => { onblurlogininput(logininputpassword.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="password" placeholder="Your password" />
+                                        </div>
+                                    </div>
+                                    <button className={`dfnt16 mr30 bklightblue ${loginpasswordinput && emailcorrectsyntex() && loginpasswordinput.length >= 8 ? "bkblue" : ""} `} disabled={(loginpasswordinput) ? (!emailcorrectsyntex() && !loginpasswordinput.length >= 8) ? true : false : true}>Login</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                    <div className={`logincard_bottom w300 ${themecheck("bklightwhite txt4", "bkblack txt1")}`}>About.Careers.Privacy.Terms.Contact.Languages. Your Ad Choices.Press.© Quora, Inc. 2024</div>
                 </div>
-                <div className={`logincard_bottom w300 ${themecheck("bklightwhite txt4", "bkblack txt1")}`}>About.Careers.Privacy.Terms.Contact.Languages. Your Ad Choices.Press.© Quora, Inc. 2024</div>
-            </div>
-            
-            {signup && <div className="blackscreen" onClick={() => { setsignup(false) }}></div>}
-            {signup && <div className={`signupform p30 flex flexc g10 ${themecheck("bkwhite", "bklightblack")}`}>
-                <div className={`crossiconsignuppage`} onClick={() => { setsignup(false) }}>{crossicon}</div>
-                <h2 className={` w500 ${themecheck("txt8", "txt7")}`}>Sign up</h2>
-                <form onSubmit={(e)=>{e.preventDefault(); fetchsignup()}}>
-                <div className={`w100per  flex flexc g10`}>
-                    <div className={`w100per flex flexc g10`}>
-                        <h4 className={`${themecheck("txt8", "txt7")}`}>Name</h4>
-                        <div>
-                        <input value={signupnameinput} onChange={(e) => { setsignupnameinput(e.target.value)}} ref={signupinputname} onFocus={() => { theme == "dark" ? onfocuslogininputdark(signupinputname.current) : onfocuslogininputlight(signupinputname.current) }} onBlur={() => { onblurlogininput(signupinputname.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="text" placeholder="What would you like to be called?" />
-                        <p className={`${themecheck("txt8", "txt6")} error signupnameerror`}>Name must be min. 3 characters</p>
+
+                {signup && <div className="blackscreen" onClick={() => { setsignup(false) }}></div>}
+                {signup && <div className={`signupform p30 flex flexc g10 ${themecheck("bkwhite", "bklightblack")}`}>
+                    <div className={`crossiconsignuppage`} onClick={() => { setsignup(false) }}>{crossicon}</div>
+                    <h2 className={` w500 ${themecheck("txt8", "txt7")}`}>Sign up</h2>
+                    <form onSubmit={(e) => { e.preventDefault(); fetchsignup() }}>
+                        <div className={`w100per  flex flexc g10`}>
+                            <div className={`w100per flex flexc g10`}>
+                                <h4 className={`${themecheck("txt8", "txt7")}`}>Name</h4>
+                                <div>
+                                    <input value={signupnameinput} onChange={(e) => { setsignupnameinput(e.target.value) }} ref={signupinputname} onFocus={() => { theme == "dark" ? onfocuslogininputdark(signupinputname.current) : onfocuslogininputlight(signupinputname.current) }} onBlur={() => { onblurlogininput(signupinputname.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="text" placeholder="What would you like to be called?" />
+                                    <p className={`${themecheck("txt8", "txt6")} error signupnameerror`}>Name must be min. 3 characters</p>
+                                </div>
+                            </div>
+                            <div className={`w100per flex flexc g10`}>
+                                <h4 className={`${themecheck("txt8", "txt7")}`}>Email</h4>
+                                <div>
+                                    <input value={signupemailinput} onChange={(e) => { setsignupemailinput(e.target.value) }} ref={signupinputemail} onFocus={() => { theme == "dark" ? onfocuslogininputdark(signupinputemail.current) : onfocuslogininputlight(signupinputemail.current) }} onBlur={() => { onblurlogininput(signupinputemail.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="email" placeholder="Your email" />
+                                    <p className={`${themecheck("txt8", "txt6")} error signupemailerror`}>Email must be in correct format</p>
+                                </div>
+                            </div>
+                            <div className={`w100per flex flexc g10`}>
+                                <h4 className={`${themecheck("txt8", "txt7")}`}>Password</h4>
+                                <div>
+                                    <input value={signuppasswordinput} onChange={(e) => { setsignuppasswordinput(e.target.value) }} ref={signupinputpassword} onFocus={() => { theme == "dark" ? onfocuslogininputdark(signupinputpassword.current) : onfocuslogininputlight(signupinputpassword.current) }} onBlur={() => { onblurlogininput(signupinputpassword.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="password" placeholder="Your password" />
+                                    <p className={`${themecheck("txt8", "txt6")} error signuppassworderror`}>Password must be min. 8 characters</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={`w100per flex flexc g10`}>
-                        <h4 className={`${themecheck("txt8", "txt7")}`}>Email</h4>
-                        <div>
-                        <input value={signupemailinput} onChange={(e) => { setsignupemailinput(e.target.value)}} ref={signupinputemail} onFocus={() => { theme == "dark" ? onfocuslogininputdark(signupinputemail.current) : onfocuslogininputlight(signupinputemail.current) }} onBlur={() => { onblurlogininput(signupinputemail.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="email" placeholder="Your email" />
-                        <p className={`${themecheck("txt8", "txt6")} error signupemailerror`}>Email must be in correct format</p>
-                        </div>
-                    </div>
-                    <div className={`w100per flex flexc g10`}>
-                        <h4 className={`${themecheck("txt8", "txt7")}`}>Password</h4>
-                        <div>
-                        <input value={signuppasswordinput} onChange={(e) => { setsignuppasswordinput(e.target.value) }} ref={signupinputpassword} onFocus={() => { theme == "dark" ? onfocuslogininputdark(signupinputpassword.current) : onfocuslogininputlight(signupinputpassword.current) }} onBlur={() => { onblurlogininput(signupinputpassword.current) }} className={`pl10 fnt16 ${themecheck("bkwhite", "bkblack")} ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("txt8", "txt7")} inputborderhover`} type="password" placeholder="Your password" />
-                        <p className={`${themecheck("txt8", "txt6")} error signuppassworderror`}>Password must be min. 8 characters</p>
-                        </div>
-                    </div>
+                        <button className={`fnt16 mr30 bklightblue ${signuppasswordinput && signupnameinput && emailcorrectsyntexsignup() && signuppasswordinput.length >= 8 && signupnameinput.length > 2 ? "bkblue" : ""} `} disabled={(signuppasswordinput && signupnameinput) ? (!emailcorrectsyntexsignup() && !signuppasswordinput.length >= 8 && !signupnameinput.length > 2) ? true : false : true} >Signup</button>
+                    </form>
                 </div>
-                <button className={`fnt16 mr30 bklightblue ${signuppasswordinput && signupnameinput && emailcorrectsyntexsignup() && signuppasswordinput.length >= 8 && signupnameinput.length>2 ? "bkblue" : ""} `} disabled={(signuppasswordinput && signupnameinput) ? (!emailcorrectsyntexsignup() && !signuppasswordinput.length >= 8 && !signupnameinput.length>2) ? true : false : true} >Signup</button>
-                </form>
+                }
             </div>
-            }
-        </div>
-}
-</>
+        }
+        </>
     )
 }
 
