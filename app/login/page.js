@@ -177,7 +177,11 @@ export default function page() {
     }
 
     return (
+<<<<<<< HEAD
         <>{!logintoken &&
+=======
+         <>{!logintoken &&
+>>>>>>> a763bc50c6c4c020569e36c47658ac38a1d4dc23
         <div className="login_main_div">
             <div className={`login_card ${themecheck("bkwhite", "bklightblack")}`}>
                 <div className="logincard_main">
