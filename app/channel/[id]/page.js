@@ -39,7 +39,6 @@ export default function page(props) {
       setAnchorEl(null);
   };
 
-
   const channeldatafun = useMemo(async () => {
     try {
       const response = await (await fetch(`${baseurl}/quora/channel/${props.params.id}`,
@@ -114,7 +113,8 @@ export default function page(props) {
            {channeldata.description && <p className={`txt10 fnt12`}>{channeldata.description}</p>}
           </div>
           <div className={`channelprofilerightdiv flex flexc`}>
-          {channeldata && JSON.parse(localStorage.getItem("userdetails"))._id == channeldata.owner._id &&
+          {channeldata &&
+           JSON.parse(localStorage.getItem("userdetails"))._id == channeldata.owner._id &&
            <div style={{alignSelf:"flex-end"}} className={`bkllwhite brdr-r-per`}>
                         <Button
                             id="basic-button"

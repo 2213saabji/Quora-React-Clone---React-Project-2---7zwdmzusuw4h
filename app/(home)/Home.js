@@ -32,6 +32,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
         setAnchorEl(null);
     };
 
+    // -------------------------To Delete Personal Posts------------------------------
 
     const deletepost = async (val) => {
         try {
@@ -50,9 +51,11 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
         }
     }
 
+    // -------------------------To Modify Personal Posts------------------------------
+
     const modifypost = async (val) => {
         try {
-            if (title != "" && content != "" && imgpost) {
+            if (title != "" && content != "") {
                 const formData = new FormData();
                 formData.append('title', title);
                 formData.append('content', content);
@@ -79,6 +82,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
         }
     }
 
+    // -------------------------To Comment On Posts------------------------------
+
     const commentsend = async () => {
         try {
 
@@ -100,6 +105,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
         }
     }
 
+    // -------------------------To Like Posts------------------------------
 
     const likefun = async (val) => {
         try {
@@ -117,6 +123,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
             alert(error);
         }
     }
+
+    // -------------------------To Dislike Posts------------------------------
 
     const dislikefun = async (val) => {
         try {
@@ -155,17 +163,23 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                         {item.author.profileImage ?
                             <img className={`profileimage mr10 csrpntr`} src={item.author.profileImage} alt="profile" onClick={() => { routetouserpage(item.author._id) }} />
                             :
-                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(item.author.name.charCodeAt(0))%20]}}>{item.author.name.charAt(0)}</h2>
+                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{ backgroundColor: AVATAR_BACKGROUND_COLORS[(item.author.name.charCodeAt(0)) % 20] }}>{item.author.name.charAt(0)}</h2>
                         }
                         <div>
-                        <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.author.name}</h4>
-                        <div className={`flex ${themecheck("txt5","txt1")}`}><p className={`fnt12 posteddate`}>Posted at</p> &nbsp;<p className={`fnt11 posteddate`}>{item.createdAt[8]}{item.createdAt[9]}{months3char[parseInt(item.createdAt[5] == 1 ? 10 : 0) + parseInt(item.createdAt[6])]}, {item.createdAt[0]}{item.createdAt[1]}{item.createdAt[2]}{item.createdAt[3]}</p></div>
+                            <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.author.name}</h4>
+                            <div className={`flex ${themecheck("txt5", "txt1")}`}>
+                                <p className={`fnt12 posteddate`}>Posted at</p> &nbsp;
+                                <p className={`fnt11 posteddate`}>{item.createdAt[8]}{item.createdAt[9]}{months3char[parseInt(item.createdAt[5] == 1 ? 10 : 0) + parseInt(item.createdAt[6])]}, {item.createdAt[0]}{item.createdAt[1]}{item.createdAt[2]}{item.createdAt[3]}</p>
+                            </div>
                         </div>
                     </div>
                     <h4 className={`${themecheck("txt8", "txt7")} mt10 mb10`}>{item.title}</h4>
                     <p className={`homecontent w400 ${themecheck("txt8", "txt7")}`}>{item.content}</p>
                 </div>
-                {item.images[0] && <div><img className={`w100per`} style={{ height: "100%" }} src={item.images[0]} alt="image" /></div>}
+                {item.images[0] && 
+                <div>
+                    <img className={`w100per`} style={{ height: "100%" }} src={item.images[0]} alt="image" />
+                </div>}
 
                 <div className={`flexa flexjsb w100per`}>
                     <div className={`upvoteDownvoteComment flex w100per pl20 pr20 pb5 mt5`}>
@@ -175,59 +189,61 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                         </div>
                         <div className={`csrpntr brdr-r12 flexja ml20 ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { setcommentdiv(!commentdiv); }}>{roundmessageicon}&nbsp;{item.commentCount}</div>
                     </div>
-                    {delpostaccess && JSON.parse(localStorage.getItem("userdetails"))._id == item.author._id && <>
-                        <Button
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                            sx={{ borderRadius: "50%", minWidth: "40px", height: "40px", marginRight: "10px" }}
-                        >
-                            {dot3icon}
-                        </Button>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem >
-                                <React.Fragment>
+                    {delpostaccess &&
+                        JSON.parse(localStorage.getItem("userdetails"))._id == item.author._id &&
+                        <>
+                            <Button
+                                id="basic-button"
+                                aria-controls={open ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                                onClick={handleClick}
+                                sx={{ borderRadius: "50%", minWidth: "40px", height: "40px", marginRight: "10px" }}
+                            >
+                                {dot3icon}
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem >
+                                    <React.Fragment>
 
-                                    <div onClick={() => { handleClosee(), handleClickOpenn() }} className={`flexja`}>Delete Post</div>
-                                    <Dialog
-                                        open={openn}
-                                        onClose={handleClosee}
-                                        aria-labelledby="alert-dialog-title"
-                                        aria-describedby="alert-dialog-description"
-                                    >
-                                        <DialogTitle id="alert-dialog-title">
-                                            {"Are you sure to delete this post"}
-                                        </DialogTitle>
-                                        <DialogActions>
-                                            <Button onClick={() => { handleClosee(), handleClose() }}>Disagree</Button>
-                                            <Button onClick={(e) => { handleClosee(); handleClose(), deletepost(item._id) }} autoFocus>
-                                                Agree
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                </React.Fragment>
-                            </MenuItem>
-                            <MenuItem onClick={() => { handleClose(), setmodify(true) }}>Modify Post</MenuItem>
-                        </Menu>
-                    </>}
+                                        <div onClick={() => { handleClosee(), handleClickOpenn() }} className={`flexja`}>Delete Post</div>
+                                        <Dialog
+                                            open={openn}
+                                            onClose={handleClosee}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description"
+                                        >
+                                            <DialogTitle id="alert-dialog-title">
+                                                {"Are you sure to delete this post"}
+                                            </DialogTitle>
+                                            <DialogActions>
+                                                <Button onClick={() => { handleClosee(), handleClose() }}>Disagree</Button>
+                                                <Button onClick={(e) => { handleClosee(); handleClose(), deletepost(item._id) }} autoFocus>
+                                                    Agree
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </React.Fragment>
+                                </MenuItem>
+                                <MenuItem onClick={() => { handleClose(), setmodify(true) }}>Modify Post</MenuItem>
+                            </Menu>
+                        </>}
                 </div>
                 {commentdiv && <div>
                     <div className={`commentdiv bklgray w100per flexa pl10 flexjsb`}>
                         <div className={`flexa w100per`}>
-                            <h2 className={`postimg w500 fnt20  flexja  ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0))%20]}}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
+                            <h2 className={`postimg w500 fnt20  flexja  ${themecheck("txt7", "txt8")}`} style={{ backgroundColor: AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0)) % 20] }}>{JSON.parse(localStorage.getItem("userdetails")).name.charAt(0)}</h2>
                             <input className={`commentinput pl20 pr20 ml5 ${themecheck("bkwhite", "bklightblack")} ${themecheck("txt8", "txt7")}`} value={comment} onChange={(e) => { setcomment(e.target.value) }} type='text' placeholder='Add a comment....' />
                         </div>
-                        <button className={`commentbutton fnt13 brdr-r50 mr5 txtrpnone pl20 pr20 txt7 ${themecheck(comment ? "bklightblue2" : "bklightgray", comment ? "bklightblue2" : "")} ${themecheck(comment ? "txt7" : "txt8", comment ? "txt7" : "txt8")}`} onClick={() => { commentsend(); setcomment(""); successfullMessageAddfun(); settoggle(!toggle); refreshcommentdiv() }} disabled={!comment}>Add comment</button>
+                        <button className={`commentbutton ml10 fnt13 brdr-r50 mr5 txtrpnone pl20 pr20 txt7 ${themecheck(comment ? "bklightblue2" : "bklightgray", comment ? "bklightblue2" : "")} ${themecheck(comment ? "txt7" : "txt8", comment ? "txt7" : "txt8")}`} onClick={() => { commentsend(); setcomment(""); successfullMessageAddfun(); settoggle(!toggle); refreshcommentdiv() }} disabled={!comment}>Add comment</button>
                     </div>
                     <div className={`commentmessage w100per pb10`} onClick={(e) => { e.stopPropagation() }}>
                         <CommentMessage id={item._id} refreshcommentdiv={refreshcommentdiv} toggle={commentdiv} settoggle={setcommentdiv} routetouserpage={routetouserpage} themecheck={themecheck} />
@@ -240,7 +256,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                         {item.author.profileImage ?
                             <img className={`profileimage mr10 csrpntr`} src={item.author.profileImage} alt="profile" onClick={() => { routetouserpage(item.author._id) }} />
                             :
-                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0))%20]}}>{item.author.name.charAt(0)}</h2>
+                            <h2 className={`postimg w500 mr10 fnt20  flexja ${themecheck("txt7", "txt8")}`} style={{ backgroundColor: AVATAR_BACKGROUND_COLORS[(JSON.parse(localStorage.getItem("userdetails")).name.charCodeAt(0)) % 20] }}>{item.author.name.charAt(0)}</h2>
                         }
                         <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.author.name}</h4>
                     </div>
@@ -255,7 +271,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                         </div>
                         <div>
                             <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 csrpntr fnt15 txt7 bghvr mr20  ${themecheck("txt8", " txt7")}`} onClick={(e) => { e.stopPropagation(); setmodify(false) }} >cancel</button>
-                            <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 fnt15 txt7  ${!title || !content || !imgpost ? "bkblue nodrop" : "bkpureblue csrpntr"}`} onClick={() => { modifypost(item._id) }} disabled={!title || !content || !imgpost}>Modify</button>
+                            <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 fnt15 txt7  ${!title || !content ? "bkblue nodrop" : "bkpureblue csrpntr"}`} onClick={() => { modifypost(item._id) }} disabled={!title || !content}>Modify</button>
                         </div>
                     </div>
                 </div>

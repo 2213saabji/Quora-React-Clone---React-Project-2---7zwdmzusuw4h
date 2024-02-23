@@ -16,6 +16,9 @@ export default function page() {
   function pushtoAnswer() {
     router.push(`/answer`);
   }
+  
+// -------------------------Fetch Webite Posts For Home Route------------------------------
+
   const fetchdata = useMemo(async () => {
     try {
       const response = await (await fetch(`${baseurl}/quora/post?limit=500`,
@@ -64,6 +67,7 @@ export default function page() {
           </div>
 
           {data && data.map((item, index) => (
+            <div key={index}>
             <Home delpostaccess={false}
               index={index}
               toggle={toggle} settoggle={settoggle}
@@ -71,6 +75,7 @@ export default function page() {
               item={item}
               routetouserpage={routetouserpage}
               successfullMessageAddfun={successfullMessageAddfun} />
+              </div>
           ))}
 
         </div>

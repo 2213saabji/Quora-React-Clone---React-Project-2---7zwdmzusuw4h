@@ -263,7 +263,7 @@ function Navbar() {
                         ))}
 
                         <div className='searchinput'>
-                            <SearchIcon className={`${themecheck("svgfill5", "svgfill1")}`} style={{ scale: "1.2" }} />
+                            <SearchIcon   style={{ scale: "1.2",fill:themecheck("black","") }} />
                             <input type='text' className={`w300 ${themecheck("bkwhite", "bklightblack")} ${themecheck("txt8", "txt7")}`} onFocus={focussearchinput} onBlur={blursearchinput} value={searchinput} onChange={(e) => { setsearchinput(e.target.value), focussearchinput() }} />
                             {searchinputstate && <div className={`serachinputpop ${themecheck("bkwhite", "bklightblack")} ${themecheck("boxshadowlgray","boxshadowblack")}`}>
                                 <h2 className={`pb10 mb5 brdrb2 ${themecheck("brdrlightgray", "brdrllgray")}  ${themecheck("txt5", "txt1")}`}>Contents</h2>

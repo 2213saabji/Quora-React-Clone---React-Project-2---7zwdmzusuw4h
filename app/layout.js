@@ -47,6 +47,8 @@ export default function RootLayout({ children }) {
     },2000)
  }
 
+// -------------------------Target Image For Posts------------------------------
+
   const handleFileSelection = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -64,6 +66,8 @@ export default function RootLayout({ children }) {
       }
     }
   };
+// -------------------------Target Image For Channel Profile------------------------------
+
   const handlechannelFileSelection = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -82,10 +86,11 @@ export default function RootLayout({ children }) {
     }
   };
 
+// -------------------------Create Posts------------------------------
 
   const postfun = async () => {
     try {
-      if (title != "" && content != "" && imgpost) {
+      if (title != "" && content != "") {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
@@ -111,6 +116,8 @@ export default function RootLayout({ children }) {
       alert(error);
     }
   }
+
+// -------------------------Create Channels------------------------------
 
   const newchannelfun = async () => {
     try {
@@ -150,6 +157,8 @@ export default function RootLayout({ children }) {
   function channelimagepicker() {
     channelinputpicuploader.current.click();
   }
+
+// -------------------------Main Function To Check Light&Dark Mode------------------------------
 
   function themecheck(val1, val2) {
     return theme === "light" ? val1 : val2
@@ -273,7 +282,7 @@ export default function RootLayout({ children }) {
                     <div className={`flexa flexjsb createpostdowndiv pr10 pl10 brdrt1 ${themecheck("brdrlightgray", "brdrllgray")}`}>
                       <div className={`flexa`}><div className={`fnt20 w600 mr10 csrpntr ${themecheck("txt5", "txt1")}`} onClick={() => { setuppercase(!uppercase) }}>Aa</div>
                         <div className={`csrpntr flex`} onClick={() => { imagepicker() }} >{imagesicon}<input type='file' ref={inputpicuploader} style={{ display: "none" }} onChange={(e) => { handleFileSelection(e) }} /><div ref={imagestorediv}></div></div></div>
-                      <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 fnt15 txt7  ${!title || !content || !imgpost ? "bkblue" : "bkpureblue csrpntr"}`} onClick={() => { postfun() }} disabled={!title || !content || !imgpost}>Post</button>
+                      <button className={` pt10 pb10 pl30 pr30 brdr-r50 w500 fnt15 txt7  ${!title || !content? "bkblue" : "bkpureblue csrpntr"}`} onClick={() => { postfun() }} disabled={!title || !content}>Post</button>
                     </div>
                   </div>
                 }

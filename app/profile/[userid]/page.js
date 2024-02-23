@@ -13,11 +13,13 @@ import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Home from "@/app/(home)/Home";
+import { useRouter } from "next/navigation";
 
 const steps = ['Work Experience', 'Education', 'Skills', "Address"];
 
 export default function YourComponent(props) {
-  const { title, settitle, content, setcontent, imgpost, setimgpost, blackscreen2, setactivePostOrQueDiv, setblackscreen2, toggle, settoggle, routetouserpage, uppercase, imagepicker, inputpicuploader, imagestorediv, handleFileSelection, setuppercase, successfullMessageAddfun } = allContext();
+  const router = useRouter();
+  const { title, settitle, content, setcontent, imgpost, setimgpost, blackscreen2, setactivePostOrQueDiv, setblackscreen2, toggle, settoggle, uppercase, imagepicker, inputpicuploader, imagestorediv, handleFileSelection, setuppercase, successfullMessageAddfun } = allContext();
   const { themecheck } = allContext();
   const [data, setdata] = useState();
   const [userfound, setuserfound] = useState(true);
@@ -159,6 +161,11 @@ export default function YourComponent(props) {
       alert(error);
     }
   }
+  
+  function routetouserpage(userid) {
+    router.push(`/profile/${userid}`)
+  }
+  
   return (
     <div className={`usermaindiv flexj w100per`}>
       {userfound && data &&
@@ -171,14 +178,16 @@ export default function YourComponent(props) {
                   <h1 className={`txtrpnone ${themecheck("txt8", "txt7")}`}>{data.name}</h1>
                   <p className={`txtrpnone fnt12 ${themecheck("txt4", "txt1")}`}>({data.email})</p>
                 </div>
-                <div className={`followbuttondiv flex g20`}>
-                  <button onClick={() => { following ? postunfollow(data._id) : postfollow(data._id) }} className={`w600 csrpntr pl20 pr20 pt5 pb5 brdr2 brdr-r50 flexa brdrpureblue fnt15   ${following ? "txtblue" : "txt7"} ${following ? "bktransparent" : "bkpureblue"}`}>
-                    {following ? followingicon : followicon}&nbsp; {following ? `Following` : `Follow`}
-                  </button>
-                  <button className={`askbuttonuser csrpntr w600 pl10 pr10 brdr2 brdr-r50 flexa fnt14 bktransparent flexa g5 ${themecheck("brdrlgray", "brdrllgray")} ${themecheck("txt5", "txt1")} `} onClick={() => { setblackscreen2(true), setactivePostOrQueDiv(true) }}>
-                    <div className={`iscale08`} >{messageicon}</div><p> Ask</p>
-                  </button>
-                </div>
+                {JSON.parse(localStorage.getItem("userdetails"))._id != props.params.userid &&
+                  <div className={`followbuttondiv flex g20`}>
+                    <button onClick={() => { following ? postunfollow(data._id) : postfollow(data._id) }} className={`w600 csrpntr pl20 pr20 pt5 pb5 brdr2 brdr-r50 flexa brdrpureblue fnt15   ${following ? "txtblue" : "txt7"} ${following ? "bktransparent" : "bkpureblue"}`}>
+                      {following ? followingicon : followicon}&nbsp; {following ? `Following` : `Follow`}
+                    </button>
+                    <button className={`askbuttonuser csrpntr w600 pl10 pr10 brdr2 brdr-r50 flexa fnt14 bktransparent flexa g5 ${themecheck("brdrlgray", "brdrllgray")} ${themecheck("txt5", "txt1")} `} onClick={() => { setblackscreen2(true), setactivePostOrQueDiv(true) }}>
+                      <div className={`iscale08`} >{messageicon}</div><p> Ask</p>
+                    </button>
+                  </div>
+                }
               </div>
             </div>
             <div className={`userpostsdiv flexa flexc pb30`}>
@@ -238,7 +247,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Description:</h4><h4 className={` w400`}>{data.workExperience[0].description}</h4></div>
                       </div>
                     }
-              {!data.workExperience?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                    {!data.workExperience?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
 
                   </div>}
                   {activeStep == 1 && <div className={`ml30`}>
@@ -250,7 +259,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Description:</h4><h4 className={`w400`}>{data.education[0].description}</h4></div>
                       </div>
                     }
-              {!data.education?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                    {!data.education?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
 
                   </div>}
                   {activeStep == 2 && <div className={`ml30`}>
@@ -273,7 +282,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Zip Code:</h4><h4 className={`w400`}>{data.address[0].zipCode}</h4></div>
                       </div>
                     }
-              {!data.address?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                    {!data.address?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
                   </div>}
 
                 </Typography>
