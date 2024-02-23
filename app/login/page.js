@@ -177,6 +177,7 @@ export default function page() {
     }
 
     return (
+        <>{!logintoken &&
         <div className="login_main_div">
             <div className={`login_card ${themecheck("bkwhite", "bklightblack")}`}>
                 <div className="logincard_main">
@@ -191,7 +192,7 @@ export default function page() {
                                 <div className={`onlinesignin flexa g10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt8", "txt7")}`}>{googleicon} <p className="fnt14">Continue with Google(coming soon)</p></div>
                                 <div className={`onlinesignin flexa g10 ${themecheck("brdrlightgray", "brdrllgray")} ${themecheck("bkwhite", "bkblack")} ${themecheck("txt8", "txt7")}`}>{facebookicon} <p className="fnt14">Continue with Facebook(coming soon)</p></div>
                             </div>
-                            <p className={`signupbutton flexja ${themecheck("txt5", "txt1")}`} onClick={() => { setsignup(true) }}>Sign up with email</p>
+                            <p className={`signupbutton bghvr brdr-r50 pl10 pr10 flexja ${themecheck("txt5", "txt1")}`} onClick={() => { setsignup(true) }}>Sign up with email</p>
                             <div className={`flexja flexc ${themecheck("txt8", "txt7")}`}>
                                 <p>{themecheck("LightMode", "DarkMode")}</p>
                                 <FormControlLabel style={{ transform: "translate(13px)" }} control={<MaterialUISwitch sx={{ m: 1 }} checked={theme=="dark"} />} onChange={themechanger} checked={theme === "dark"} />
@@ -252,6 +253,8 @@ export default function page() {
             </div>
             }
         </div>
+}
+</>
     )
 }
 

@@ -1,6 +1,6 @@
 'use client'
 import "../../(styles)/user.css"
-import { baseurl, calendericon, designationicon, educationicon, followicon, followingicon, locationicon, messageicon, months } from "@/app/(navbar)/constant";
+import { AVATAR_BACKGROUND_COLORS, baseurl, calendericon, designationicon, educationicon, followicon, followingicon, locationicon, messageicon, months } from "@/app/(navbar)/constant";
 import { allContext } from "@/app/layout";
 import { useEffect, useMemo, useState } from "react";
 import "../../(imgs)/empty.png"
@@ -172,7 +172,7 @@ export default function YourComponent(props) {
         <>
           <div className={`userpageleft flex flexc pl20 pt20 pr20`}>
             <div className={`flex`}>
-              {data.profileImage ? <img className={`userPageProfileImg brdr-r-per mr20`} src={data.profileImage} alt="helo" /> : <div className={`userPageProfileImgsubstitute flexja w500  brdr-r-per mr20 ${themecheck("bkgray", "bklightgray")} ${themecheck("txt7", "txt8")}`}>{data.name.charAt(0)}</div>}
+              {data.profileImage ? <img className={`userPageProfileImg brdr-r-per mr20`} src={data.profileImage} alt="helo" /> : <div className={`userPageProfileImgsubstitute flexja w500  brdr-r-per mr20  ${themecheck("txt7", "txt8")}`} style={{backgroundColor:AVATAR_BACKGROUND_COLORS[(data.name.charCodeAt(0))%20]}}>{data.name.charAt(0)}</div>}
               <div className={`pt20 pb5 flexc flexjsb flex`}>
                 <div>
                   <h1 className={`txtrpnone ${themecheck("txt8", "txt7")}`}>{data.name}</h1>
