@@ -16,7 +16,7 @@ export default function page() {
       </div>
       <div className="mainflexright ">
 
-      <div className={`flexja flexc emptymainflexright`}><div className={`emptypostsmessage`} style={{width:"300px",height:"250px",position:'relative'}}><Image src={"/errormessage.webp"} style={{transform:"translate(-40px)"}} layout='fill' alt='hello'/> </div><p className={`mt20 ${themecheck("txt8", "txt7")}`}>We expect this feature to be implemented shortly.</p></div>
+      <div className={`flexja flexc emptymainflexright`}><div style={{width:"300px",height:"250px",position:'relative'}}><Image src={"/errormessage.webp"} style={{transform:"translate(-40px)"}} layout='fill' alt='hello'/> </div><p className={`mt20 ${themecheck("txt8", "txt7")}`}>We expect this feature to be implemented shortly.</p></div>
 
       </div>
 
