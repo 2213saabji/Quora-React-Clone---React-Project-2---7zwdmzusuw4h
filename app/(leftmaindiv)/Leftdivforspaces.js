@@ -10,6 +10,9 @@ export default function Leftdivforspaces({toggle, baseurl, theme, settheme, load
   let disablerepeatuser = "";
   const router=useRouter();
   const [leftdivdata, setleftdivdata] = useState();
+
+  //---------------------------Fetch all the channels--------------------------
+
   const fetchsearchdata = useMemo(async () => {
     try {
       const response = await (await fetch(`${baseurl}/quora/channel`,
@@ -22,9 +25,12 @@ export default function Leftdivforspaces({toggle, baseurl, theme, settheme, load
       )).json();
       setleftdivdata(response.data)
     } catch (error) {
-      alert(error);
+      console.log(error);
+
     }
   }, [toggle])
+
+  //---------------------------Navigate to Any user's channel--------------------------
 
   function pushtochannel(val){
     router.push(`/channel/${val}`)

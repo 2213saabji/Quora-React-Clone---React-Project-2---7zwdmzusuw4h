@@ -34,6 +34,8 @@ function Navbar() {
 
     const open = Boolean(anchorEl);
     const openn = Boolean(anchorEll);
+
+    //---------------------------for navbar (MUI comp start)--------------------------
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -173,6 +175,10 @@ function Navbar() {
         },
     }));
 
+    //---------------------------for navbar (MUI comp end)--------------------------
+
+    //---------------------------Fetch all the titles--------------------------
+
     const fetchsearchdata = useMemo(async () => {
         try {
             const response = await (await fetch(`${baseurl}/quora/post?search={"title":"${searchinput}"}`,
@@ -185,19 +191,28 @@ function Navbar() {
             )).json();
             setsearchdata(response.data)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }, [searchinput])
     useEffect(() => {
         fetchsearchdata;
     }, [])
 
+    //---------------------------Navigate to personal profile--------------------------
+
     function userprofile(){
         router.push(`/profile/${JSON.parse(localStorage.getItem("userdetails"))._id}`)
     }
+
+    //---------------------------Navigate to login page--------------------------
+
     function gotologin() {
         router.push(`/login`);
     }
+
+    //---------------------------Navigate to Any user profile--------------------------
+
     function pushtoprofile(val){
         router.push(`/profile/${val}`)
     }

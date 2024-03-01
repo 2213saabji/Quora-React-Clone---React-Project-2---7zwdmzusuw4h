@@ -47,7 +47,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
             )
             settoggle(!toggle)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -78,7 +79,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                 setmodify(false)
             }
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -101,7 +103,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                 }
             )).json();
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -120,7 +123,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
             )).json();
             settoggle(!toggle)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -139,7 +143,8 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
             )).json();
             settoggle(!toggle)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
     function refreshcommentdiv() {
@@ -189,6 +194,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                         </div>
                         <div className={`csrpntr brdr-r12 flexja ml20 ${themecheck("darkbghvr", "llbghvr")} ${themecheck("txt5", "txt1")}`} onClick={() => { setcommentdiv(!commentdiv); }}>{roundmessageicon}&nbsp;{item.commentCount}</div>
                     </div>
+{/* ---------------------------Delete button below the posts-------------------------------- */}
                     {delpostaccess &&
                         JSON.parse(localStorage.getItem("userdetails"))._id == item.author._id &&
                         <>
@@ -237,6 +243,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                             </Menu>
                         </>}
                 </div>
+{/* ---------------------------for comments below the posts-------------------------------- */}
                 {commentdiv && <div>
                     <div className={`commentdiv bklgray w100per flexa pl10 flexjsb`}>
                         <div className={`flexa w100per`}>
@@ -250,6 +257,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                     </div>
                 </div>}
             </>}
+{/* ---------------------------To modify previous uploaded post-------------------------------- */}
             {modify && <>
                 <div className={`p10 modifyboxdiv`}>
                     <div className={`flex`}>

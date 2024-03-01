@@ -13,6 +13,9 @@ export default function page() {
   const router = useRouter();
   const { theme, settheme, logintoken, setlogintoken, loader, setloader, blackscreen2, setblackscreen2, themecheck, blackscreen3, setblackscreen3, toggle, settoggle } = allContext();
   const [spacesdata, setspacesdata] = useState();
+
+  //----------------------fetch all the channel's----------------------
+
   const fetchsearchdata = useMemo(async () => {
     try {
       const response = await (await fetch(`${baseurl}/quora/channel`,
@@ -25,13 +28,11 @@ export default function page() {
       )).json();
       setspacesdata(response.data)
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }, [toggle])
 
-
-
-
+  //-------------------------push to particular space-------------------------
   function pushtochannel(val) {
     router.push(`/channel/${val}`)
   }
@@ -47,9 +48,6 @@ export default function page() {
         <p className={`flexa`} >{plusicon}</p>
         <p className={`txtblue`}>Create Space</p>
       </div>
-
-
-
 
       <div className={`gridboxspaces w100per`} >
         {spacesdata.map((item, index) => (

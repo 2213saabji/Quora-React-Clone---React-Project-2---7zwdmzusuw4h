@@ -14,30 +14,36 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useRouter } from 'next/navigation'
 
 export default function page(props) {
-  const router=useRouter()
-  const {title,settitle, content,setcontent, imgpost,setimgpost, blackscreen2, setblackscreen2, toggle, settoggle, routetouserpage, uppercase,imagepicker,inputpicuploader, imagestorediv, handleFileSelection, setuppercase } = allContext();
+  const router = useRouter()
+  const { title, settitle, content, setcontent, imgpost, setimgpost, blackscreen2, setblackscreen2, toggle, settoggle, routetouserpage, uppercase, imagepicker, inputpicuploader, imagestorediv, handleFileSelection, setuppercase } = allContext();
   const { themecheck } = allContext()
   const [channeldata, setchanneldata] = useState();
-  const [channelpostsdata,setchannelpostsdata]=useState();
+  const [channelpostsdata, setchannelpostsdata] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [modify, setmodify] = useState(false);
   const [openn, setOpenn] = React.useState(false);
 
+  //---------------------------for popup del button(MUI comp start)--------------------------
   const handleClickOpenn = () => {
-      setOpenn(true);
+    setOpenn(true);
   };
 
   const handleClosee = () => {
-      setOpenn(false);
+    setOpenn(false);
   };
 
   const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-      setAnchorEl(null);
+    setAnchorEl(null);
   };
+
+  //---------------------------for popup del button(MUI comp end)--------------------------
+
+
+  //---------------------------Fetch channel details--------------------------
 
   const channeldatafun = useMemo(async () => {
     try {
@@ -52,9 +58,11 @@ export default function page(props) {
       )).json();
       setchanneldata(response.data)
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }, [])
+
+  //---------------------------Delete channel--------------------------
 
   const deletechannel = async () => {
     try {
@@ -69,13 +77,16 @@ export default function page(props) {
       )
       router.push("/")
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
 
   useEffect(() => {
     channeldatafun;
   })
+
+  //---------------------------Fetch channel posts--------------------------
+
   const channeluserpostfun = useMemo(async () => {
     try {
       const response = await (await fetch(`${baseurl}/quora/post?limit=500`,
@@ -87,10 +98,10 @@ export default function page(props) {
           },
         }
       )).json();
-      const filtereddata=response.data.filter((item)=>{return item.channel?item.channel._id == props.params.id:""})
+      const filtereddata = response.data.filter((item) => { return item.channel ? item.channel._id == props.params.id : "" })
       setchannelpostsdata(filtereddata)
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }, [toggle])
 
@@ -100,7 +111,7 @@ export default function page(props) {
   })
 
   return (<>{channeldata &&
-    <div className={`${(channelpostsdata && channelpostsdata.length<=0)?"":"channelroute"} mr30 ml30`}>
+    <div className={`${(channelpostsdata && channelpostsdata.length <= 0) ? "" : "channelroute"} mr30 ml30`}>
 
 
       <div className={`blurdiv flexj`} ></div>
@@ -109,84 +120,82 @@ export default function page(props) {
         <img className={`profilechannelimage`} src={channeldata.image} alt='' />
         <div className={`w100per flex flexjsb`}>
           <div className={`channelprofileleftdiv flex flexc flexjsb`}>
-           {channeldata.name && <h1 className={`channelusername txtrpnone txt7`}>{channeldata.name}</h1>}
-           {channeldata.description && <p className={`txt10 fnt12`}>{channeldata.description}</p>}
+            {channeldata.name && <h1 className={`channelusername txtrpnone txt7`}>{channeldata.name}</h1>}
+            {channeldata.description && <p className={`txt10 fnt12`}>{channeldata.description}</p>}
           </div>
           <div className={`channelprofilerightdiv flex flexc`}>
-          {channeldata &&
-           JSON.parse(localStorage.getItem("userdetails"))._id == channeldata.owner._id &&
-           <div style={{alignSelf:"flex-end"}} className={`bkllwhite brdr-r-per`}>
-                        <Button
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                            sx={{ borderRadius: "50%", minWidth: "40px", height: "40px", }}
+{/* -----------------------------Delete channel button------------------------- */}
+            {channeldata &&
+              JSON.parse(localStorage.getItem("userdetails"))._id == channeldata.owner._id &&
+              <div style={{ alignSelf: "flex-end" }} className={`bkllwhite brdr-r-per`}>
+                <Button
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                  sx={{ borderRadius: "50%", minWidth: "40px", height: "40px", }}
 
-                        >
-                            {dot3icon}
-                        </Button>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem 
-                            >
-                            <React.Fragment>
-                            
-                            <div onClick={()=>{handleClosee(),handleClickOpenn()}} className={`flexja`}>Delete Channel</div>
-                            <Dialog
-                                open={openn}
-                                onClose={handleClosee}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                                
-                            >
-                                <DialogTitle id="alert-dialog-title">
-                                    {"Are you sure to delete this channel"}
-                                </DialogTitle>
-                                <DialogActions>
-                                    <Button onClick={()=>{handleClosee(),handleClose()}}>Disagree</Button>
-                                    <Button onClick={(e)=>{handleClosee();handleClose(), deletechannel()}} autoFocus>
-                                        Agree
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </React.Fragment>
-                            </MenuItem>
+                >
+                  {dot3icon}
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <MenuItem
+                  >
+                    <React.Fragment>
 
+                      <div onClick={() => { handleClosee(), handleClickOpenn() }} className={`flexja`}>Delete Channel</div>
+                      <Dialog
+                        open={openn}
+                        onClose={handleClosee}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
 
-                        </Menu>
-                        
-                    </div>}
+                      >
+                        <DialogTitle id="alert-dialog-title">
+                          {"Are you sure to delete this channel"}
+                        </DialogTitle>
+                        <DialogActions>
+                          <Button onClick={() => { handleClosee(), handleClose() }}>Disagree</Button>
+                          <Button onClick={(e) => { handleClosee(); handleClose(), deletechannel() }} autoFocus>
+                            Agree
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                    </React.Fragment>
+                  </MenuItem>
+                </Menu>
+              </div>}
           </div>
         </div>
         <div className={`userpostsdiv mt20 flexa flexc`}>
 
-              {channelpostsdata && channelpostsdata.map((item, index) => (
-                <Channelposts title={title} settitle={settitle} 
-                content={content} setcontent={setcontent} 
-                imgpost={imgpost} setimgpost={setimgpost} 
-                setuppercase={setuppercase} 
-                handleFileSelection={handleFileSelection} 
-                imagestorediv={imagestorediv} 
-                inputpicuploader={inputpicuploader} 
-                imagepicker={imagepicker} 
-                uppercase={uppercase} 
-                delpostaccess={true} 
-                index={index} 
-                toggle={toggle} settoggle={settoggle} 
-                themecheck={themecheck} 
-                item={item} 
-                routetouserpage={routetouserpage} />
-              ))}
-              {channelpostsdata && channelpostsdata.length<=0 &&<div className={`emptychannelpostsmessage flexa flexc`}><div className={`emptypostsmessage`}></div><p className={`${themecheck("txt5", "txt1")}`}>You haven't shared posted anything yet.</p></div>}
+          {channelpostsdata && channelpostsdata.map((item, index) => (
+            <Channelposts title={title} settitle={settitle}
+              content={content} setcontent={setcontent}
+              imgpost={imgpost} setimgpost={setimgpost}
+              setuppercase={setuppercase}
+              handleFileSelection={handleFileSelection}
+              imagestorediv={imagestorediv}
+              inputpicuploader={inputpicuploader}
+              imagepicker={imagepicker}
+              uppercase={uppercase}
+              delpostaccess={true}
+              index={index}
+              toggle={toggle} settoggle={settoggle}
+              themecheck={themecheck}
+              item={item}
+              routetouserpage={routetouserpage} />
+          ))}
+          {channelpostsdata && channelpostsdata.length <= 0 && <div className={`emptychannelpostsmessage flexa flexc`}><div className={`emptypostsmessage`}></div><p className={`${themecheck("txt5", "txt1")}`}>You haven't shared posted anything yet.</p></div>}
         </div>
       </div>
     </div>

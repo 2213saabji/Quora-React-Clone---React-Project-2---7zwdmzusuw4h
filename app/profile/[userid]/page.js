@@ -28,9 +28,10 @@ export default function YourComponent(props) {
   const [blackscreen3, setblackscreen3] = useState(false);
   const [userposts, setuserposts] = useState();
 
-
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+
+  //---------------------------count the length of info div(MUI comp fun start)-----------------------------
 
   const totalSteps = () => {
     return steps.length;
@@ -77,8 +78,10 @@ export default function YourComponent(props) {
     setCompleted({});
   };
 
+  //---------------------------count the length of info div(MUI comp fun end)-----------------------------
 
 
+  //---------------------------Fetch the posts for selected user-----------------------------
 
   const fetchuserposts = useMemo(async () => {
     try {
@@ -94,11 +97,12 @@ export default function YourComponent(props) {
       const filteredposts = response.data.filter(item => { return item.author._id == props.params.userid })
       setuserposts(filteredposts);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }, [toggle])
 
 
+// -------------------------To get one user profile data------------------------------
 
   const fetchdata = useMemo(async () => {
     try {
@@ -122,12 +126,14 @@ export default function YourComponent(props) {
         setuserfound(false)
       }
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }, [])
   useEffect(() => {
     fetchdata;
   }, [])
+
+// -------------------------To follow profiles------------------------------
 
   const postfollow = async (userid) => {
     try {
@@ -142,9 +148,12 @@ export default function YourComponent(props) {
       )).json();
       setfollowing(true);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
+
+// -------------------------To unfollow profiles------------------------------
+
   const postunfollow = async (userid) => {
     try {
       const response = await (await fetch(`${baseurl}/quora/follow/${userid}`,
@@ -158,10 +167,12 @@ export default function YourComponent(props) {
       )).json();
       setfollowing(false);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
   
+  //---------------------------navigate to user's profile-----------------------------
+
   function routetouserpage(userid) {
     router.push(`/profile/${userid}`)
   }
@@ -247,7 +258,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Description:</h4><h4 className={` w400`}>{data.workExperience[0].description}</h4></div>
                       </div>
                     }
-                    {!data.workExperience?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                    {!data.workExperience?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared details anything yet.</p></div>}
 
                   </div>}
                   {activeStep == 1 && <div className={`ml30`}>
@@ -259,7 +270,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Description:</h4><h4 className={`w400`}>{data.education[0].description}</h4></div>
                       </div>
                     }
-                    {!data.education?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                    {!data.education?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared details anything yet.</p></div>}
 
                   </div>}
                   {activeStep == 2 && <div className={`ml30`}>
@@ -267,7 +278,7 @@ export default function YourComponent(props) {
                     {data.skills &&
                       <div className={`ml30 mt30 moredetailstxtupperdiv flex flexc g5`}>
                         {data.skills.map((item, index) => (<h3 key={index} className={`${themecheck("txt5", "txt1")}`}>{item}</h3>))}
-                        {!data.skills?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage mr30`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                        {!data.skills?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage mr30`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared details anything yet.</p></div>}
 
                       </div>
                     }
@@ -282,7 +293,7 @@ export default function YourComponent(props) {
                         <div className={`flex g20 ${themecheck("txt5", "txt1")}`}><h4>Zip Code:</h4><h4 className={`w400`}>{data.address[0].zipCode}</h4></div>
                       </div>
                     }
-                    {!data.address?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared, answered or posted anything yet.</p></div>}
+                    {!data.address?.[0] && <div className={`flexa flexc mr30`}><div className={`emptypostsmessage`}></div><p className={`txtrpnone ${themecheck("txt8", "txt7")}`}>You haven't shared details anything yet.</p></div>}
                   </div>}
 
                 </Typography>

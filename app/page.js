@@ -32,13 +32,15 @@ export default function page() {
       )).json();
       setdata(response.data)
     } catch (error) {
-      alert(error);
+      console.log(error);
+
     }
   }, [toggle])
   useEffect(() => {
     fetchdata;
   }, [])
 
+  //----------------------navigate to routes page----------------------
 
   function routetouserpage(userid) {
     router.push(`/profile/${userid}`)

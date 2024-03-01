@@ -158,12 +158,13 @@ export default function RootLayout({ children }) {
     channelinputpicuploader.current.click();
   }
 
-// -------------------------Main Function To Check Light&Dark Mode------------------------------
+// -----------------------Main Function To Check Light&Dark Mode----------------------------
 
   function themecheck(val1, val2) {
     return theme === "light" ? val1 : val2
   }
 
+//------------------------background screens false--------------------------
   function closepopups() {
     setblackscreen2(false);
     setblackscreen3(false);

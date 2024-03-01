@@ -23,32 +23,46 @@ export default function page() {
     const { theme, settheme, logintoken, setlogintoken } = allContext();
     const [signup, setsignup] = useState(false);
 
+    //---------------------------error handler for login email-----------------------------
+
     function emailcorrectsyntex() {
         return /^[^\s@]+@[^\s@]+\.(?:com)$/.test(loginemailinput);
     }
 
+    //---------------------------error handler for signup email-----------------------------
+
     function emailcorrectsyntexsignup() {
         return /^[^\s@]+@[^\s@]+\.(?:com)$/.test(signupemailinput);
     }
+
+    //---------------------------theme changer-----------------------------
 
     function themechanger() {
         settheme(theme === "light" ? "dark" : "light")
         localStorage.setItem("theme", localStorage.getItem("theme") == "light" ? "dark" : "light");
     }
 
+    //---------------------------theme checker-----------------------------
+
     function themecheck(val1, val2) {
         return theme === "light" ? val1 : val2
     }
+
+    //---------------------------onfocus login input outline-----------------------------
 
     function onfocuslogininputdark(val) {
         val.style.outline = "0.2px solid #2e65ff";
         val.style.boxShadow = "0px 0px 18px 4px rgb(40,45,65)";
     }
 
+    //---------------------------onfocus login input outline-----------------------------
+
     function onfocuslogininputlight(val) {
         val.style.outline = "0.2px solid #2e65ff";
         val.style.boxShadow = "0px 0px 3px 3px #2e66ff44";
     }
+
+    //---------------------------onblur login input-----------------------------
 
     function onblurlogininput(val) {
         val.style.outline = "0px";
@@ -56,10 +70,14 @@ export default function page() {
     }
 
     useEffect(() => {
+    //---------------------------theme check at mounting phase-----------------------------
         if (!localStorage.getItem("theme")) {
             localStorage.setItem("theme", "light");
         }
     }, [])
+    
+    //---------------------------MUI Comp for toggle button-----------------------------
+
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
         height: 34,
@@ -107,6 +125,8 @@ export default function page() {
         },
     }));
 
+    //---------------------------signup user API-----------------------------
+
     async function fetchsignup() {
         try {
             const response = await (await fetch(`${baseurl}/user/signup`,
@@ -138,10 +158,12 @@ export default function page() {
             }
         }
         catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
+    //---------------------------Login user API-----------------------------
     async function fetchlogin() {
         try {
             const response = await (await fetch(`${baseurl}/user/login`,
@@ -172,7 +194,8 @@ export default function page() {
             }
         }
         catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -221,6 +244,7 @@ export default function page() {
                     <div className={`logincard_bottom w300 ${themecheck("bklightwhite txt4", "bkblack txt1")}`}>About.Careers.Privacy.Terms.Contact.Languages. Your Ad Choices.Press.© Quora, Inc. 2024</div>
                 </div>
 
+{/* ----------------------------------signup Popup division------------------------------------ */}
                 {signup && <div className="blackscreen" onClick={() => { setsignup(false) }}></div>}
                 {signup && <div className={`signupform p30 flex flexc g10 ${themecheck("bkwhite", "bklightblack")}`}>
                     <div className={`crossiconsignuppage`} onClick={() => { setsignup(false) }}>{crossicon}</div>

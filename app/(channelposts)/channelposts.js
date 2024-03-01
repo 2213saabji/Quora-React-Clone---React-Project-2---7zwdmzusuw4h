@@ -18,6 +18,7 @@ export default function Channelposts({ title, settitle, content, setcontent, img
     const [comment, setcomment] = useState("");
     const [openn, setOpenn] = React.useState(false);
 
+    //-----------------------MUI comp start-------------------------
     const handleClickOpenn = () => {
         setOpenn(true);
     };
@@ -32,7 +33,9 @@ export default function Channelposts({ title, settitle, content, setcontent, img
     const handleClose = () => {
         setAnchorEl(null);
     };
+    //----------------------MUI comp end----------------------------
 
+    //----------------------Delete channel post-----------------------
 
     const deletepost = async (val) => {
         try {
@@ -47,9 +50,12 @@ export default function Channelposts({ title, settitle, content, setcontent, img
             )
             settoggle(!toggle)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
+
+    //----------------------Modify channel post-----------------------
 
     const modifypost = async (val) => {
         try {
@@ -76,9 +82,12 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                 setmodify(false)
             }
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
+
+    //----------------------Comment on channel post-----------------------
 
     const commentsend = async () => {
         try {
@@ -97,16 +106,21 @@ export default function Channelposts({ title, settitle, content, setcontent, img
                 }
             )).json();
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
+    //----------------------After comment refresh channel post-----------------------
+    
     function refreshcommentdiv() {
         setcommentdiv(false)
         setTimeout(() => {
             setcommentdiv(true);
         }, 0);
     }
+
+    //----------------------Like channel post-----------------------
 
     const likefun = async (val) => {
         try {
@@ -121,9 +135,12 @@ export default function Channelposts({ title, settitle, content, setcontent, img
             )).json();
             settoggle(!toggle)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
+
+    //----------------------Like channel post-----------------------
 
     const dislikefun = async (val) => {
         try {
@@ -138,13 +155,19 @@ export default function Channelposts({ title, settitle, content, setcontent, img
             )).json();
             settoggle(!toggle)
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
+
+    //----------------------onclick call like function-----------------------
 
     function clicklike(like, id) {
         likefun(id);
     }
+
+    //----------------------onclick call dislike function-----------------------
+
     function clickdislike(dislike, id) {
         dislikefun(id);
     }

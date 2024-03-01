@@ -8,10 +8,10 @@ export default function CommentMessage({ id, refreshcommentdiv, toggle, settoggl
     const [data, setdata] = useState();
     const [marginstatus, setmarginstatus] = useState(false);
 
+    //---------------------------Fetch all the comments--------------------------
 
     const fetchcomment = async () => {
         try {
-
             const response = await (await fetch(`${baseurl}/quora/post/${id}/comments`,
                 {
                     method: "GET",
@@ -23,7 +23,8 @@ export default function CommentMessage({ id, refreshcommentdiv, toggle, settoggl
             )).json();
             setdata(response.data);
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -33,12 +34,10 @@ export default function CommentMessage({ id, refreshcommentdiv, toggle, settoggl
         }
         else {
             setdata(childdata);
+// --------------------------------------marginLeft if comments are child--------------------------------------
             setmarginstatus(true);
         }
     }, [])
-
-
-
 
     return (
         <>

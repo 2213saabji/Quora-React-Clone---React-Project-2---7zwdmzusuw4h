@@ -45,7 +45,8 @@ export default function Userdetails({ refreshcommentdiv, toggle, settoggle, fetc
             )).json();
             setauthordetails(response.data);
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
@@ -66,7 +67,8 @@ export default function Userdetails({ refreshcommentdiv, toggle, settoggle, fetc
 
 
         } catch (error) {
-            alert(error);
+      console.log(error);
+
         }
     }
 
