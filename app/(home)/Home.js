@@ -174,7 +174,7 @@ export default function Home({ title, settitle, content, setcontent, imgpost, se
                             <h4 className={`w600 mt5 csrpntr ${themecheck("txt8", "txt7")}`} onClick={() => { routetouserpage(item.author._id) }}>{item.author.name}</h4>
                             <div className={`flex ${themecheck("txt5", "txt1")}`}>
                                 <p className={`fnt12 posteddate`}>Posted at</p> &nbsp;
-                                <p className={`fnt11 posteddate`}>{item.createdAt[8]}{item.createdAt[9]}{months3char[parseInt(item.createdAt[5] == 1 ? 10 : 0) + parseInt(item.createdAt[6])]}, {item.createdAt[0]}{item.createdAt[1]}{item.createdAt[2]}{item.createdAt[3]}</p>
+                                <p className={`fnt11 posteddate`}>{item.createdAt[8]}{item.createdAt[9]}{months3char[parseInt((item.createdAt[5] == 1 ? 10 : 0) + parseInt(item.createdAt[6]))-1]}, {item.createdAt[0]}{item.createdAt[1]}{item.createdAt[2]}{item.createdAt[3]}</p>
                             </div>
                         </div>
                     </div>
